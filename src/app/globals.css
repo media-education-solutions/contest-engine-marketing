@@ -144,11 +144,15 @@
 
 /* Scroll-reveal (driven by components/ui/reveal.tsx) */
 .reveal {
-  opacity: 0;
-  translate: 0 18px;
   transition:
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
     translate 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* JS adds .reveal-pending after mount — no opacity:0 in CSS means content
+   is always visible if the JS module never loads (e.g. HMR issues in dev). */
+.reveal.reveal-pending {
+  opacity: 0;
+  translate: 0 18px;
 }
 .reveal.is-visible {
   opacity: 1;
