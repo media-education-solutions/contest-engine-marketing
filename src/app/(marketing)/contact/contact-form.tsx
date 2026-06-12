@@ -22,6 +22,15 @@ function FieldError({ message }: { message?: string }) {
   return <p className="text-sm text-destructive">{message}</p>;
 }
 
+/** Visual marker only — screen readers get the input's `required` attribute. */
+function RequiredMark() {
+  return (
+    <span aria-hidden className="text-brand">
+      *
+    </span>
+  );
+}
+
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initialState);
 
@@ -46,18 +55,29 @@ export function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" name="name" autoComplete="name" required />
+          <Label htmlFor="name">
+            Name <RequiredMark />
+          </Label>
+          <Input
+            id="name"
+            name="name"
+            autoComplete="name"
+            required
+            defaultValue={state.values?.name}
+          />
           <FieldError message={state.fieldErrors?.name} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">
+            Email <RequiredMark />
+          </Label>
           <Input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
             required
+            defaultValue={state.values?.email}
           />
           <FieldError message={state.fieldErrors?.email} />
         </div>
@@ -66,11 +86,16 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="organization">School or organization</Label>
-          <Input id="organization" name="organization" autoComplete="organization" />
+          <Input
+            id="organization"
+            name="organization"
+            autoComplete="organization"
+            defaultValue={state.values?.organization}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="role">I am a…</Label>
-          <Select name="role" defaultValue="educator">
+          <Select name="role" defaultValue={state.values?.role ?? "educator"}>
             <SelectTrigger id="role" className="w-full">
               <SelectValue />
             </SelectTrigger>
@@ -84,13 +109,16 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">How can we help?</Label>
+        <Label htmlFor="message">
+          How can we help? <RequiredMark />
+        </Label>
         <Textarea
           id="message"
           name="message"
           rows={6}
           required
           placeholder="Tell us about your festival — how many students, what kinds of categories, when it runs…"
+          defaultValue={state.values?.message}
         />
         <FieldError message={state.fieldErrors?.message} />
       </div>

@@ -6,6 +6,10 @@
       "url": [
         "http://localhost:3400/",
         "http://localhost:3400/how-it-works",
+        "http://localhost:3400/why-contest-engine",
+        "http://localhost:3400/who-we-help",
+        "http://localhost:3400/pricing",
+        "http://localhost:3400/about",
         "http://localhost:3400/contact"
       ],
       "numberOfRuns": 1,

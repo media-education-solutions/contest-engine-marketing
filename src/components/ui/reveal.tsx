@@ -28,6 +28,9 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    // Reduced motion: never hide, never animate.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     el.classList.add("reveal-pending");
 
     let observer: IntersectionObserver;

@@ -16,6 +16,10 @@ const BREAKPOINTS = [
 const PAGES = [
   { name: "home", path: "/" },
   { name: "how-it-works", path: "/how-it-works" },
+  { name: "why-contest-engine", path: "/why-contest-engine" },
+  { name: "who-we-help", path: "/who-we-help" },
+  { name: "pricing", path: "/pricing" },
+  { name: "about", path: "/about" },
   { name: "contact", path: "/contact" },
   { name: "blocks", path: "/dev/blocks" },
 ] as const;

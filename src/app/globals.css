@@ -159,7 +159,9 @@
   translate: 0 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  /* Must also beat .reveal.reveal-pending's specificity */
+  .reveal,
+  .reveal.reveal-pending {
     opacity: 1;
     translate: none;
     transition: none;
