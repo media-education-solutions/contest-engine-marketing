@@ -45,7 +45,7 @@ export default function BlocksPlayground() {
           title="Run your media contest on one platform —"
           titleAccent="from submission to celebration."
           subtitle={site.description}
-          primaryCta={{ label: `Meet ${site.productName}`, href: "/how-it-works" }}
+          primaryCta={{ label: "See how it works", href: "/how-it-works" }}
           secondaryCta={{ label: "Talk to Us", href: "/contact" }}
           media={
             <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-secondary text-sm text-muted-foreground">
