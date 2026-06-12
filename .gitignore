@@ -46,3 +46,8 @@ Claude.md
 
 # Local docs
 docs/
+tests/__screenshots__/
+
+# playwright artifacts
+test-results/
+playwright-report/
