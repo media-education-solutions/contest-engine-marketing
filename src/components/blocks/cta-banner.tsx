@@ -36,7 +36,7 @@ export function CtaBanner({ title, subtitle, cta, secondaryCta }: CtaBannerProps
           </Reveal>
         )}
         <Reveal delay={180}>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
               <Link href={cta.href}>{cta.label}</Link>
             </Button>

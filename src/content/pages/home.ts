@@ -19,7 +19,7 @@ export const hero: Omit<HeroProps, "media"> = {
   title: "Run your media contest on one platform —",
   titleAccent: "from submission to celebration.",
   subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect student video and photo entries, run fair anonymous judging, and celebrate every winner — all in one place.`,
-  primaryCta: { label: `Meet ${site.productName}`, href: "/how-it-works" },
+  primaryCta: { label: "See how it works", href: "/how-it-works" },
   secondaryCta: { label: "Talk to Us", href: "/contact" },
 };
 

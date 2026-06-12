@@ -57,7 +57,7 @@ export function Hero({
             </p>
           </Reveal>
           <Reveal delay={240}>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link href={primaryCta.href}>{primaryCta.label}</Link>
               </Button>

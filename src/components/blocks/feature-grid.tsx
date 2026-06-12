@@ -47,11 +47,16 @@ export function FeatureGrid({
         )}
       </div>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* flex-wrap (not grid) so a partial last row centers — e.g. 5 cards = 3 + 2 */}
+      <div className="mt-12 flex flex-wrap justify-center gap-5">
         {features.map((feature, i) => {
           const Icon = feature.icon;
           return (
-            <Reveal key={feature.title} delay={i * 70}>
+            <Reveal
+              key={feature.title}
+              delay={i * 70}
+              className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]"
+            >
               <div
                 className={cn(
                   "group h-full rounded-xl border border-border bg-card p-6 transition-all duration-300",
