@@ -17,10 +17,20 @@ const contactSchema = z.object({
   website: z.literal("").optional(),
 });
 
+export type ContactFormValues = {
+  name: string;
+  email: string;
+  organization: string;
+  role: string;
+  message: string;
+};
+
 export type ContactFormState = {
   status: "idle" | "success" | "error";
   message?: string;
   fieldErrors?: Partial<Record<"name" | "email" | "message", string>>;
+  /** Echoed back on error so the form re-renders with input intact. */
+  values?: ContactFormValues;
 };
 
 async function verifyTurnstile(token: string | null): Promise<boolean> {
@@ -89,12 +99,16 @@ export async function submitContact(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  const values: ContactFormValues = {
+    name: String(formData.get("name") ?? ""),
+    email: String(formData.get("email") ?? ""),
+    organization: String(formData.get("organization") ?? ""),
+    role: String(formData.get("role") ?? "educator"),
+    message: String(formData.get("message") ?? ""),
+  };
+
   const parsed = contactSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    organization: formData.get("organization"),
-    role: formData.get("role"),
-    message: formData.get("message"),
+    ...values,
     website: formData.get("website"),
   });
 
@@ -108,6 +122,7 @@ export async function submitContact(
         email: flat.email?.[0],
         message: flat.message?.[0],
       },
+      values,
     };
   }
 
@@ -118,6 +133,7 @@ export async function submitContact(
     return {
       status: "error",
       message: "We couldn't verify you're human — please try again.",
+      values,
     };
   }
 
@@ -127,6 +143,7 @@ export async function submitContact(
       status: "error",
       message:
         "Something went wrong sending your message. Please try again in a moment.",
+      values,
     };
   }
 

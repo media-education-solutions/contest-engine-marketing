@@ -8,6 +8,10 @@ import { site } from "@/content/site";
 const routes: Array<{ path: string; priority: number }> = [
   { path: "/", priority: 1 },
   { path: "/how-it-works", priority: 0.9 },
+  { path: "/why-contest-engine", priority: 0.8 },
+  { path: "/who-we-help", priority: 0.8 },
+  { path: "/pricing", priority: 0.8 },
+  { path: "/about", priority: 0.6 },
   { path: "/contact", priority: 0.8 },
 ];
 

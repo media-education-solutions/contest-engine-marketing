@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Kicker } from "@/components/ui/play-mark";
+import { Kicker, PlayMark } from "@/components/ui/play-mark";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/layout/section";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,8 @@ export type Feature = {
   icon?: LucideIcon;
   title: string;
   body: string;
+  /** Optional detail list — used by audience/segment cards. */
+  bullets?: string[];
 };
 
 export type FeatureGridProps = {
@@ -65,6 +67,19 @@ export function FeatureGrid({
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {feature.body}
                 </p>
+                {feature.bullets && feature.bullets.length > 0 && (
+                  <ul className="mt-4 space-y-2.5 border-t border-border pt-4">
+                    {feature.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="flex items-start gap-2.5 text-sm leading-relaxed"
+                      >
+                        <PlayMark className="mt-1 size-2 shrink-0" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </Reveal>
           );

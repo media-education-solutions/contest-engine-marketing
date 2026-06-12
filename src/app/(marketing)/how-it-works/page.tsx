@@ -1,7 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
-import { Kicker } from "@/components/ui/play-mark";
-import { Reveal } from "@/components/ui/reveal";
-import { Container } from "@/components/layout/section";
+import { PageIntro } from "@/components/blocks/page-intro";
 import { FeatureSplit } from "@/components/blocks/feature-split";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
@@ -23,23 +21,7 @@ const mediaLabels: Record<string, string> = {
 export default function HowItWorksPage() {
   return (
     <>
-      <div className="border-b border-border bg-secondary/50">
-        <Container className="py-16 text-center sm:py-20">
-          <Reveal>
-            <Kicker>{content.intro.kicker}</Kicker>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="mx-auto mt-4 max-w-3xl text-4xl text-balance sm:text-5xl">
-              {content.intro.title}
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
-              {content.intro.subtitle}
-            </p>
-          </Reveal>
-        </Container>
-      </div>
+      <PageIntro {...content.intro} />
 
       {content.roles.map((role) => (
         <FeatureSplit
