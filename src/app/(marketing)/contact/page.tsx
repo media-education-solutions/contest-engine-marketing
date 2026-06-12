@@ -1,18 +1,21 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd, contactPageSchema } from "@/lib/jsonld";
 import { Kicker } from "@/components/ui/play-mark";
 import { Reveal } from "@/components/ui/reveal";
 import { Container } from "@/components/layout/section";
 import { site } from "@/content/site";
 import { ContactForm } from "./contact-form";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description: `Talk to the ${site.productName} team about running your student film or photo festival on one platform.`,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+      <JsonLd data={contactPageSchema()} />
       <div>
         <Reveal>
           <Kicker>Talk to us</Kicker>

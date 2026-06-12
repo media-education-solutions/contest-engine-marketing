@@ -51,3 +51,6 @@ tests/__screenshots__/
 # playwright artifacts
 test-results/
 playwright-report/
+
+# lighthouse ci artifacts
+.lighthouseci/
