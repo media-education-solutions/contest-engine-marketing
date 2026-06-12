@@ -42,8 +42,11 @@ export function ProcessSteps({ kicker, title, intro, steps }: ProcessStepsProps)
 
       <ol className="mt-14 grid gap-10 sm:grid-cols-3 sm:gap-6">
         {steps.map((step, i) => (
-          <Reveal key={step.name} delay={i * 120}>
-            <li className="relative flex h-full flex-col items-center text-center sm:px-4">
+          <li key={step.name} className="relative">
+            <Reveal
+              delay={i * 120}
+              className="flex h-full flex-col items-center text-center sm:px-4"
+            >
               {/* Connector to the next step (desktop only) */}
               {i < steps.length - 1 && (
                 <div
@@ -65,8 +68,8 @@ export function ProcessSteps({ kicker, title, intro, steps }: ProcessStepsProps)
               <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
                 {step.body}
               </p>
-            </li>
-          </Reveal>
+            </Reveal>
+          </li>
         ))}
       </ol>
     </Section>

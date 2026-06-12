@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/content/site";
 import { Hero } from "@/components/blocks/hero";
 import { LogoCloud } from "@/components/blocks/logo-cloud";
 import { BeforeAfter } from "@/components/blocks/before-after";
@@ -6,6 +8,11 @@ import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import * as content from "@/content/pages/home";
+
+export const metadata = pageMetadata({
+  description: site.description,
+  path: "/",
+});
 
 export default function HomePage() {
   return (

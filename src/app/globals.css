@@ -66,7 +66,8 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* 0.50 (vs shadcn's 0.556) keeps ≥4.5:1 contrast on the muted bg too */
+  --muted-foreground: oklch(0.5 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -143,11 +144,15 @@
 
 /* Scroll-reveal (driven by components/ui/reveal.tsx) */
 .reveal {
-  opacity: 0;
-  translate: 0 18px;
   transition:
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
     translate 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* JS adds .reveal-pending after mount — no opacity:0 in CSS means content
+   is always visible if the JS module never loads (e.g. HMR issues in dev). */
+.reveal.reveal-pending {
+  opacity: 0;
+  translate: 0 18px;
 }
 .reveal.is-visible {
   opacity: 1;

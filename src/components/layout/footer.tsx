@@ -12,11 +12,11 @@ export function Footer() {
             <p className="font-heading text-lg font-bold uppercase tracking-[0.18em]">
               {site.productName}
             </p>
-            <p className="mt-3 flex items-center gap-2 text-sm text-background/60">
+            <p className="mt-3 flex items-center gap-2 text-sm text-background/70">
               <PlayMark className="size-2" />
               {footer.tagline}
             </p>
-            <p className="mt-6 text-sm leading-relaxed text-background/60">
+            <p className="mt-6 text-sm leading-relaxed text-background/70">
               {site.mission}
             </p>
           </div>
@@ -24,7 +24,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
             {footer.groups.map((group) => (
               <nav key={group.title} aria-label={group.title}>
-                <p className="font-heading text-xs font-semibold uppercase tracking-[0.18em] text-background/40">
+                <p className="font-heading text-xs font-semibold uppercase tracking-[0.18em] text-background/65">
                   {group.title}
                 </p>
                 <ul className="mt-4 space-y-3">
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-background/10 pt-6 text-xs text-background/40">
+        <div className="mt-14 border-t border-background/10 pt-6 text-xs text-background/65">
           {footer.copyright}
         </div>
       </div>

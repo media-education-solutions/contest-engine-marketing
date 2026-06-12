@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Kicker } from "@/components/ui/play-mark";
 import { Reveal } from "@/components/ui/reveal";
 import { Container } from "@/components/layout/section";
@@ -7,10 +7,11 @@ import { CtaBanner } from "@/components/blocks/cta-banner";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import * as content from "@/content/pages/how-it-works";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "How It Works",
   description: content.intro.subtitle,
-};
+  path: "/how-it-works",
+});
 
 const mediaLabels: Record<string, string> = {
   organizers: "Contest setup — screenshot slot",
