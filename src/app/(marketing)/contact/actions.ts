@@ -132,7 +132,7 @@ export async function submitContact(
   if (!human) {
     return {
       status: "error",
-      message: "We couldn't verify you're human — please try again.",
+      message: "We couldn't verify you're human. Please try again.",
       values,
     };
   }
@@ -149,6 +149,6 @@ export async function submitContact(
 
   return {
     status: "success",
-    message: "Thanks — we read every message and we'll get back to you soon.",
+    message: "Thanks! We read every message and we'll get back to you soon.",
   };
 }

@@ -21,7 +21,7 @@ export default function WhoWeHelpPage() {
         media={
           <MediaPlaceholder
             aspect="4/3"
-            label="Students filming at a festival — photo slot"
+            label="Students filming at a festival (photo slot)"
           />
         }
       />

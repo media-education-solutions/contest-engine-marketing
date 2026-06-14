@@ -9,7 +9,7 @@ import * as content from "@/content/pages/about";
 
 export const metadata = pageMetadata({
   title: `About ${site.companyShortName}`,
-  description: `${site.companyName} builds ${site.productName} — founded by a 24-year media educator to ${site.mission.charAt(0).toLowerCase()}${site.mission.slice(1).replace(/\.$/, "")}.`,
+  description: `${site.companyName} builds ${site.productName}, founded by a 24-year media educator to ${site.mission.charAt(0).toLowerCase()}${site.mission.slice(1).replace(/\.$/, "")}.`,
   path: "/about",
 });
 

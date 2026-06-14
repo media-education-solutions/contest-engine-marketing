@@ -27,9 +27,9 @@ ${features}
 
 ## How a contest works
 
-1. **Collect** — organizers create a contest with divisions and categories, set deadlines, and distribute access codes (or QR codes). Students enter with a contest code + participant code; no student accounts or emails are required.
-2. **Evaluate** — judges review anonymized entries (letter labels, never names) on a guided 1–10 scale with named achievement tiers, write feedback for each student, and rank their top three per category.
-3. **Activate** — organizers review and publish winner showcases (1st/2nd/3rd per category), students receive judge feedback, and originals can be bulk-downloaded into the program's archive.
+1. **Collect**: organizers create a contest with divisions and categories, set deadlines, and distribute access codes (or QR codes). Students enter with a contest code + participant code; no student accounts or emails are required.
+2. **Evaluate**: judges review anonymized entries (letter labels, never names) on a guided 1–10 scale with named achievement tiers, write feedback for each student, and rank their top three per category.
+3. **Activate**: organizers review and publish winner showcases (1st/2nd/3rd per category), students receive judge feedback, and originals can be bulk-downloaded into the program's archive.
 
 ## Used by
 
@@ -42,7 +42,7 @@ ${clients}
 
 ## Company
 
-${site.companyName} — ${site.mission}
+${site.companyName}: ${site.mission}
 `;
 
   return new Response(body, {
