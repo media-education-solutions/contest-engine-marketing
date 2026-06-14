@@ -15,7 +15,7 @@ import { site } from "@/content/site";
 export const intro: PageIntroProps = {
   kicker: "Who we help",
   title: "Made for student media — ready for every kind of contest",
-  subtitle: `${site.productName} was born in scholastic media and runs deepest there. But the engine underneath — collect, evaluate, activate — fits any organization that turns participation into creative work.`,
+  subtitle: `${site.productName} was born in scholastic media and runs deepest there. But the engine underneath (collect, evaluate, activate) fits any organization that turns participation into creative work.`,
 };
 
 /** Lead segment gets the full split treatment (photo slot for deployment shots). */
@@ -23,10 +23,10 @@ export const lead: Omit<FeatureSplitProps, "media"> = {
   id: "scholastic",
   kicker: "Our home turf",
   title: "Scholastic media programs & student festivals",
-  body: "State associations, journalism programs, media educators, and student conventions — running film festivals, photo contests, and multimedia storytelling competitions from a single classroom to statewide scale.",
+  body: "State associations, journalism programs, media educators, and student conventions, running film festivals, photo contests, and multimedia storytelling competitions from a single classroom to statewide scale.",
   bullets: [
     "Divisions for elementary, middle, and high school in one contest",
-    "Code-based entry that respects student privacy — no accounts, no emails",
+    "Code-based entry that respects student privacy: no accounts, no emails",
     "Judges drawn from industry pros and faculty, working remotely on their schedule",
     "Winner showcases ready for the awards ceremony and the school website",
   ],
@@ -42,7 +42,7 @@ export const segments: FeatureGridProps = {
     {
       icon: Radio,
       title: "Community media organizations",
-      body: "Public-access stations and youth media nonprofits running recurring video competitions — like statewide youth exchanges and community storytelling programs.",
+      body: "Public-access stations and youth media nonprofits running recurring video competitions, like statewide youth exchanges and community storytelling programs.",
     },
     {
       icon: Clapperboard,
@@ -57,7 +57,7 @@ export const segments: FeatureGridProps = {
     {
       icon: Trophy,
       title: "Athletics & sports content",
-      body: "Athletic departments and teams collecting fan- and athlete-created content — sponsored challenges, NIL-friendly creator programs, and community engagement campaigns.",
+      body: "Athletic departments and teams collecting fan- and athlete-created content: sponsored challenges, NIL-friendly creator programs, and community engagement campaigns.",
     },
     {
       icon: Megaphone,

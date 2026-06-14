@@ -8,7 +8,7 @@ export const intro: PageIntroProps = {
   kicker: "Pricing",
   title: "Plans that scale with your program",
   subtitle:
-    "From a single classroom contest to a statewide festival season — start small, grow when your program does.",
+    "From a single classroom contest to a statewide festival season. Start small, grow when your program does.",
 };
 
 export const pricing: PricingTiersProps = {
@@ -140,12 +140,12 @@ export const faq: FaqProps = {
     {
       question: "Can we upgrade mid-season?",
       answer:
-        `Yes — if your festival outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
+        `Yes. If your festival outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
     },
     {
       question: "Is there a free way to evaluate it first?",
       answer:
-        "Yes — the Trial tier is free under Founder Legacy Pricing and runs one real contest with multiple categories and up to 25 participants, so you can take the full workflow for a spin before committing.",
+        "Yes. The Trial tier is free under Founder Legacy Pricing and runs one real contest with multiple categories and up to 25 participants, so you can take the full workflow for a spin before committing.",
     },
     {
       question: "Do you offer demos?",
@@ -158,6 +158,6 @@ export const faq: FaqProps = {
 export const ctaBanner: CtaBannerProps = {
   title: "Not sure which plan fits?",
   subtitle:
-    "Tell us your festival size and structure — we'll tell you honestly what you need (and what you don't).",
+    "Tell us your festival size and structure. We'll tell you honestly what you need (and what you don't).",
   cta: { label: "Talk to Us", href: "/contact" },
 };

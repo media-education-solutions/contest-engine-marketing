@@ -18,7 +18,7 @@ export const site = {
   tagline: "Collect. Evaluate. Activate.",
   mission:
     "Empowering organizations to transform participation into content, recognition, and measurable impact.",
-  description: `${PRODUCT_NAME} is a centralized platform that helps schools and organizations run media contests — collect student video and photo submissions, manage fair anonymous judging, and celebrate winners.`,
+  description: `${PRODUCT_NAME} is a centralized platform that helps schools and organizations run media contests: collect student video and photo submissions, manage fair anonymous judging, and celebrate winners.`,
 
   /** Canonical host — domain being acquired; update if it changes. */
   url: "https://contest-engine.com",

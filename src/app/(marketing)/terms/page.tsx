@@ -13,7 +13,7 @@ export default function TermsPage() {
       <h1 className="text-4xl">Terms of Service</h1>
       <p className="mt-6 leading-relaxed text-muted-foreground">
         Full terms coming soon. {site.productName} is offered by{" "}
-        {site.companyName} — until formal terms are published here, platform
+        {site.companyName}. Until formal terms are published here, platform
         agreements are handled directly with each organization.
       </p>
     </Container>

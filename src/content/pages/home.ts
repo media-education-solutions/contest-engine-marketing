@@ -18,7 +18,7 @@ export const hero: Omit<HeroProps, "media"> = {
   kicker: "Student film & photo festivals",
   title: "Run your media contest on one platform —",
   titleAccent: "from submission to celebration.",
-  subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect student video and photo entries, run fair anonymous judging, and celebrate every winner — all in one place.`,
+  subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect student video and photo entries, run fair anonymous judging, and celebrate every winner, all in one place.`,
   primaryCta: { label: "See how it works", href: "/how-it-works" },
   secondaryCta: { label: "Talk to Us", href: "/contact" },
 };
@@ -59,17 +59,17 @@ export const processSteps: ProcessStepsProps = {
   kicker: "How it works",
   title: site.tagline,
   intro:
-    "Three steps take your festival from open call to awards night — without the administrative chaos.",
+    "Three steps take your festival from open call to awards night, without the administrative chaos.",
   steps: [
     {
       name: "Collect",
       title: "Open your contest",
-      body: "Create categories, set deadlines, and hand out access codes. Students upload video or photo entries from any device — no student accounts needed.",
+      body: "Create categories, set deadlines, and hand out access codes. Students upload video or photo entries from any device. No student accounts needed.",
     },
     {
       name: "Evaluate",
       title: "Judge fairly, anywhere",
-      body: "Judges score anonymous entries on a guided 1–10 scale, write feedback, and rank their top three — on their own schedule.",
+      body: "Judges score anonymous entries on a guided 1–10 scale, write feedback, and rank their top three, on their own schedule.",
     },
     {
       name: "Activate",
@@ -83,7 +83,7 @@ export const featureGrid: FeatureGridProps = {
   kicker: `Why ${site.productName}`,
   title: "Everything a festival needs, nothing it doesn't",
   intro:
-    "Purpose-built by a 24-year media educator who ran national-scale student competitions — not adapted from generic contest software.",
+    "Purpose-built by a 24-year media educator who ran national-scale student competitions, not adapted from generic contest software.",
   tone: "muted",
   features: [
     {
@@ -99,12 +99,12 @@ export const featureGrid: FeatureGridProps = {
     {
       icon: ShieldCheck,
       title: "Anonymous judging",
-      body: "Judges see Entry A, B, C — never names. Fairness is built into the workflow, not bolted on.",
+      body: "Judges see Entry A, B, C, never names. Fairness is built into the workflow, not bolted on.",
     },
     {
       icon: MessageSquareText,
       title: "Feedback for every student",
-      body: "Judges leave written feedback alongside scores — recognition and growth, not just a scoreboard.",
+      body: "Judges leave written feedback alongside scores: recognition and growth, not just a scoreboard.",
     },
     {
       icon: Award,
