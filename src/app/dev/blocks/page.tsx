@@ -15,6 +15,8 @@ import { ProcessSteps } from "@/components/blocks/process-steps";
 import { LogoCloud } from "@/components/blocks/logo-cloud";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { Faq } from "@/components/blocks/faq";
+import { VideoEmbed } from "@/components/blocks/video-embed";
+import { ScreenshotShowcase } from "@/components/blocks/screenshot-showcase";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -150,6 +152,37 @@ export default function BlocksPlayground() {
             },
           ]}
         />
+
+        <BlockLabel>
+          Media slot-fillers (drop into Hero / FeatureSplit `media` props)
+        </BlockLabel>
+        <div className="mx-auto grid max-w-5xl gap-8 px-5 py-12 sm:grid-cols-2">
+          <div>
+            <p className="mb-3 font-mono text-xs text-muted-foreground">
+              ScreenshotShowcase (og-default.png stand-in)
+            </p>
+            <div className="rounded-xl border border-border bg-card shadow-[0_24px_60px_-28px_rgb(50_1_10/0.3)]">
+              <ScreenshotShowcase
+                src="/og-default.png"
+                alt="Contest Engine product screenshot placeholder"
+                aspect="video"
+              />
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 font-mono text-xs text-muted-foreground">
+              VideoEmbed (no poster → click-to-play placeholder)
+            </p>
+            <div className="rounded-xl border border-border bg-card shadow-[0_24px_60px_-28px_rgb(50_1_10/0.3)]">
+              <VideoEmbed
+                libraryId="000000"
+                videoId="00000000-0000-0000-0000-000000000000"
+                title="Judging flow walkthrough (sample)"
+                aspect="video"
+              />
+            </div>
+          </div>
+        </div>
 
         <BlockLabel>CtaBanner</BlockLabel>
         <CtaBanner
