@@ -63,7 +63,9 @@ export function VideoEmbed(props: VideoEmbedProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
-  // Ambient mode: play only while in view, and never for reduced-motion users.
+  // Ambient mode: play once when scrolled into view (pausing/resuming if the
+  // viewer scrolls past mid-play), then rest on the final frame — no loop, and
+  // no replay on re-entry. Never autoplays for reduced-motion users.
   useEffect(() => {
     if (!ambient) return;
     const el = containerRef.current;
@@ -71,15 +73,26 @@ export function VideoEmbed(props: VideoEmbedProps) {
     if (!el || !video) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    let ended = false;
+    const onEnded = () => {
+      ended = true;
+    };
+    video.addEventListener("ended", onEnded);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (ended) return;
         if (entry.isIntersecting) video.play().catch(() => {});
         else video.pause();
       },
       { threshold: 0.4 },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("ended", onEnded);
+    };
   }, [ambient]);
 
   const wrapperClass = cn(
@@ -96,7 +109,6 @@ export function VideoEmbed(props: VideoEmbedProps) {
           title={title}
           poster={poster}
           muted
-          loop
           playsInline
           preload="none"
           aria-label={title}

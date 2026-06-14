@@ -21,9 +21,9 @@ export default function HomePage() {
         {...content.hero}
         media={
           <VideoEmbed
-            src="/assets/video/owner/owner_contest_creation.mp4"
-            poster="/assets/video/owner/owner_contest_creation_poster.jpg"
-            title="Creating a contest in Contest Engine"
+            src="/assets/video/judge/judge_judging_process.mp4"
+            poster="/assets/video/judge/judge_judging_process_poster.jpg"
+            title="Judging anonymized entries on a guided rating scale"
             aspect="4/3"
             autoPlay
           />
