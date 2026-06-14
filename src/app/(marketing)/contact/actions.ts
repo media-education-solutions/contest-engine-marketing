@@ -11,7 +11,7 @@ const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, "Tell us a little about your festival or question.")
+    .min(10, "Please enter at least 10 characters.")
     .max(5000),
   /** Honeypot — humans never fill this. */
   website: z.literal("").optional(),
