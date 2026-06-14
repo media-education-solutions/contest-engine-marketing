@@ -30,6 +30,12 @@ export type ScreenshotShowcaseProps = {
   aspect?: Aspect;
   /** Mobile aspect ratio (only meaningful with `mobileSrc`). */
   mobileAspect?: Aspect;
+  /**
+   * `cover` (default) crops to fill — right for photos. `contain` shows the
+   * whole image on a filled background — right for UI screenshots that
+   * shouldn't have edges sliced off.
+   */
+  fit?: "cover" | "contain";
   /** Set on an above-the-fold showcase so it isn't lazy-loaded. */
   priority?: boolean;
 };
@@ -45,26 +51,24 @@ export function ScreenshotShowcase({
   mobileSrc,
   aspect = "video",
   mobileAspect = "4/3",
+  fit = "cover",
   priority = false,
 }: ScreenshotShowcaseProps) {
   const sizes = "(min-width: 1024px) 50vw, 100vw";
+  const fitClass = fit === "contain" ? "object-contain" : "object-cover";
+  // Fill the letterbox area so `contain` reads as an intentional frame.
+  const frame = cn("relative overflow-hidden rounded-xl", fit === "contain" && "bg-secondary");
 
   if (!mobileSrc) {
     return (
-      <div className={cn("relative overflow-hidden rounded-xl", aspectClass[aspect])}>
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+      <div className={cn(frame, aspectClass[aspect])}>
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={fitClass} />
       </div>
     );
   }
 
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-xl",
-        aspectClass[mobileAspect],
-        smAspectClass[aspect],
-      )}
-    >
+    <div className={cn(frame, aspectClass[mobileAspect], smAspectClass[aspect])}>
       {/* Mobile crop ≤sm */}
       <Image
         src={mobileSrc}
@@ -72,7 +76,7 @@ export function ScreenshotShowcase({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover sm:hidden"
+        className={cn(fitClass, "sm:hidden")}
       />
       {/* Desktop capture ≥sm */}
       <Image
@@ -81,7 +85,7 @@ export function ScreenshotShowcase({
         fill
         sizes={sizes}
         priority={priority}
-        className="hidden object-cover sm:block"
+        className={cn("hidden sm:block", fitClass)}
       />
     </div>
   );

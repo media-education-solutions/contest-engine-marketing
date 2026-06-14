@@ -1,7 +1,10 @@
+import type { ReactNode } from "react";
 import { pageMetadata } from "@/lib/seo";
 import { PageIntro } from "@/components/blocks/page-intro";
 import { FeatureSplit } from "@/components/blocks/feature-split";
 import { CtaBanner } from "@/components/blocks/cta-banner";
+import { VideoEmbed } from "@/components/blocks/video-embed";
+import { ScreenshotShowcase } from "@/components/blocks/screenshot-showcase";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import * as content from "@/content/pages/how-it-works";
 
@@ -11,11 +14,40 @@ export const metadata = pageMetadata({
   path: "/how-it-works",
 });
 
-const mediaLabels: Record<string, string> = {
-  organizers: "Contest setup — screenshot slot",
-  students: "Student upload flow — screenshot slot",
-  judges: "Judging room — interactive demo slot",
-  results: "Winner showcase — screenshot slot",
+// Temporary demo-contest media (Spring Student Film Festival seed).
+const mediaByRole: Record<string, ReactNode> = {
+  organizers: (
+    <VideoEmbed
+      src="/assets/video/owner/owner_category_creation.mp4"
+      poster="/assets/video/owner/owner_category_creation_poster.jpg"
+      title="Setting up divisions and categories"
+      aspect="4/3"
+    />
+  ),
+  students: (
+    <ScreenshotShowcase
+      src="/assets/photo/student/student_contest_results.png"
+      alt="A student's submissions, status, and judge feedback"
+      aspect="4/3"
+      fit="contain"
+    />
+  ),
+  judges: (
+    <ScreenshotShowcase
+      src="/assets/photo/judge/judge_ranking.png"
+      alt="Anonymized entries with a guided rating scale and drag-and-drop top-three ranking"
+      aspect="video"
+      fit="contain"
+    />
+  ),
+  results: (
+    <ScreenshotShowcase
+      src="/assets/photo/owner/owner_contest_results.png"
+      alt="Published winner showcase with first, second, and third place per category"
+      aspect="4/3"
+      fit="contain"
+    />
+  ),
 };
 
 export default function HowItWorksPage() {
@@ -27,9 +59,7 @@ export default function HowItWorksPage() {
         <FeatureSplit
           key={role.id}
           {...role}
-          media={
-            <MediaPlaceholder label={mediaLabels[role.id ?? ""] ?? "Media slot"} />
-          }
+          media={mediaByRole[role.id ?? ""] ?? <MediaPlaceholder label="Media slot" />}
         />
       ))}
 

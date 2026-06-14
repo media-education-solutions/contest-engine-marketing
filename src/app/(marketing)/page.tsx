@@ -6,7 +6,7 @@ import { BeforeAfter } from "@/components/blocks/before-after";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBanner } from "@/components/blocks/cta-banner";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import { VideoEmbed } from "@/components/blocks/video-embed";
 import * as content from "@/content/pages/home";
 
 export const metadata = pageMetadata({
@@ -20,9 +20,11 @@ export default function HomePage() {
       <Hero
         {...content.hero}
         media={
-          <MediaPlaceholder
+          <VideoEmbed
+            src="/assets/video/owner/owner_contest_creation.mp4"
+            poster="/assets/video/owner/owner_contest_creation_poster.jpg"
+            title="Creating a contest in Contest Engine"
             aspect="4/3"
-            label="Judging dashboard — screenshot coming in media phase"
           />
         }
       />
