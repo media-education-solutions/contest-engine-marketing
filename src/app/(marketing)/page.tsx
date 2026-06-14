@@ -6,7 +6,7 @@ import { BeforeAfter } from "@/components/blocks/before-after";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBanner } from "@/components/blocks/cta-banner";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import { VideoEmbed } from "@/components/blocks/video-embed";
 import * as content from "@/content/pages/home";
 
 export const metadata = pageMetadata({
@@ -20,9 +20,12 @@ export default function HomePage() {
       <Hero
         {...content.hero}
         media={
-          <MediaPlaceholder
+          <VideoEmbed
+            src="/assets/video/judge/judge_judging_process.mp4"
+            poster="/assets/video/judge/judge_judging_process_poster.jpg"
+            title="Judging anonymized entries on a guided rating scale"
             aspect="4/3"
-            label="Judging dashboard — screenshot coming in media phase"
+            autoPlay
           />
         }
       />
