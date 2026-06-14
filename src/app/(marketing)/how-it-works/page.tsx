@@ -22,6 +22,7 @@ const mediaByRole: Record<string, ReactNode> = {
       poster="/assets/video/owner/owner_category_creation_poster.jpg"
       title="Setting up divisions and categories"
       aspect="4/3"
+      autoPlay
     />
   ),
   students: (
@@ -44,7 +45,7 @@ const mediaByRole: Record<string, ReactNode> = {
     <ScreenshotShowcase
       src="/assets/photo/owner/owner_contest_results.png"
       alt="Published winner showcase with first, second, and third place per category"
-      aspect="4/3"
+      aspect="square"
       fit="contain"
     />
   ),

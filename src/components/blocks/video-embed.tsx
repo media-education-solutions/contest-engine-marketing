@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { PlayMark } from "@/components/ui/play-mark";
 import { cn } from "@/lib/utils";
@@ -15,9 +15,9 @@ type CommonProps = {
   /** Used for the play-button aria-label and the iframe/video title. */
   title: string;
   /**
-   * Poster shown until the visitor hits play. A local `/public` path or a
-   * Bunny CDN url (`*.b-cdn.net`, allowed in next.config). Omit for a plain
-   * brand-maroon placeholder.
+   * Poster shown until the visitor hits play (or, in autoplay mode, the
+   * frame shown while paused / for reduced-motion users). A local `/public`
+   * path or a Bunny CDN url (`*.b-cdn.net`, allowed in next.config).
    */
   poster?: string;
   aspect?: keyof typeof aspectClass;
@@ -28,6 +28,7 @@ type BunnyProps = CommonProps & {
   libraryId: string;
   videoId: string;
   src?: never;
+  autoPlay?: never;
 };
 
 /** Self-hosted source: an mp4/webm in `/public` (or any same-origin url). */
@@ -35,29 +36,78 @@ type FileProps = CommonProps & {
   src: string;
   libraryId?: never;
   videoId?: never;
+  /**
+   * Ambient autoplay: a silent, looping "living screenshot" that plays when
+   * scrolled into view and pauses when out. Only for self-hosted, narration-
+   * free clips, and only below the fold (above-the-fold autoplay hurts LCP).
+   * Respects `prefers-reduced-motion` — those users get the static poster.
+   */
+  autoPlay?: boolean;
 };
 
 export type VideoEmbedProps = BunnyProps | FileProps;
 
 /**
- * Click-to-play video for any `media` slot (Hero, FeatureSplit), in place of
+ * Video for any `media` slot (Hero, FeatureSplit), in place of
  * MediaPlaceholder. Plays from Bunny Stream (libraryId + videoId) OR a
- * self-hosted file (`src`) — Bunny is optional, so a Screen Studio export can
- * live in `/public` until/unless Bunny is set up. Nothing heavy loads until
- * the visitor clicks play, so video is never the LCP element.
+ * self-hosted file (`src`). Default is click-to-play so nothing heavy loads
+ * until interaction (video is never the LCP element). Self-hosted clips can
+ * opt into `autoPlay` for a muted, looping ambient demo.
  */
 export function VideoEmbed(props: VideoEmbedProps) {
   const { title, poster, aspect = "video" } = props;
-  const [playing, setPlaying] = useState(false);
   const isBunny = "libraryId" in props && props.libraryId != null;
+  const ambient = !isBunny && props.autoPlay === true;
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  // Ambient mode: play only while in view, and never for reduced-motion users.
+  useEffect(() => {
+    if (!ambient) return;
+    const el = containerRef.current;
+    const video = videoRef.current;
+    if (!el || !video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ambient]);
+
+  const wrapperClass = cn(
+    "relative overflow-hidden rounded-xl bg-brand-deep",
+    aspectClass[aspect],
+  );
+
+  if (ambient) {
+    return (
+      <div ref={containerRef} className={wrapperClass}>
+        <video
+          ref={videoRef}
+          src={(props as FileProps).src}
+          title={title}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label={title}
+          className="absolute inset-0 size-full object-cover"
+        />
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-xl bg-brand-deep",
-        aspectClass[aspect],
-      )}
-    >
+    <div className={wrapperClass}>
       {playing ? (
         isBunny ? (
           <iframe
@@ -70,7 +120,7 @@ export function VideoEmbed(props: VideoEmbedProps) {
           />
         ) : (
           <video
-            src={props.src}
+            src={(props as FileProps).src}
             title={title}
             autoPlay
             controls
@@ -97,7 +147,7 @@ export function VideoEmbed(props: VideoEmbedProps) {
           )}
           <span
             aria-hidden
-            className="absolute inset-0 bg-brand-deep/25 transition-colors group-hover:bg-brand-deep/10"
+            className="absolute inset-0 bg-brand-deep/10 transition-colors group-hover:bg-brand-deep/0"
           />
           <span
             aria-hidden

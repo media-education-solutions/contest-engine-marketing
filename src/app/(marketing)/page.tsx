@@ -25,6 +25,7 @@ export default function HomePage() {
             poster="/assets/video/owner/owner_contest_creation_poster.jpg"
             title="Creating a contest in Contest Engine"
             aspect="4/3"
+            autoPlay
           />
         }
       />
