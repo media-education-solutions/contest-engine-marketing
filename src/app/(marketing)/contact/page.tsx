@@ -8,7 +8,7 @@ import { ContactForm } from "./contact-form";
 
 export const metadata = pageMetadata({
   title: "Contact",
-  description: `Talk to the ${site.productName} team about running your student film or photo festival on one platform.`,
+  description: `Talk to the ${site.productName} team about running your film or photo competition on one platform.`,
   path: "/contact",
 });
 
@@ -22,14 +22,14 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={80}>
           <h1 className="mt-4 text-4xl text-balance sm:text-5xl">
-            Tell us about your festival
+            Tell us about your contest
           </h1>
         </Reveal>
         <Reveal delay={160}>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Whether you run a single classroom contest or a statewide media
-            festival, we&apos;d love to show you what it looks like on{" "}
-            {site.productName}. Real humans read every message — usually the
+            Whether you run a single classroom contest or a nationwide media
+            event, we&apos;d love to show you what it looks like on{" "}
+            {site.productName}. Real humans read every message, usually the
             founder.
           </p>
         </Reveal>

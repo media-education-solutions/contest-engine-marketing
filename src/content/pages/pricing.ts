@@ -6,16 +6,16 @@ import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Pricing",
-  title: "Plans that scale with your program",
+  title: "Plans that scale with your organization",
   subtitle:
-    "From a single classroom contest to a statewide festival season. Start small, grow when your program does.",
+    "From a single classroom contest to a nationwide media event. Start small, grow when your organization does.",
 };
 
 export const pricing: PricingTiersProps = {
   title: "Annual plans",
   notice: {
     title: "Founder Legacy Pricing — 50% off, locked in",
-    body: "Early customers get half off, honored for continuous renewal up to 5 years. The prices below show both.",
+    body: "Early customers get half off, honored for continuous renewal up to 3 years. The prices below show both.",
   },
   tiers: [
     {
@@ -130,7 +130,7 @@ export const faq: FaqProps = {
     {
       question: "What is Founder Legacy Pricing exactly?",
       answer:
-        "A 50% discount for early customers, honored for continuous renewal for up to 5 years. Lock it in now and your price stays put while the program grows.",
+        "A 50% discount for early customers, honored for continuous renewal for up to 3 years. Lock it in now and your price stays put while the program grows.",
     },
     {
       question: "What counts as a submission?",
@@ -140,7 +140,7 @@ export const faq: FaqProps = {
     {
       question: "Can we upgrade mid-season?",
       answer:
-        `Yes. If your festival outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
+        `Yes. If your event outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
     },
     {
       question: "Is there a free way to evaluate it first?",
@@ -158,6 +158,6 @@ export const faq: FaqProps = {
 export const ctaBanner: CtaBannerProps = {
   title: "Not sure which plan fits?",
   subtitle:
-    "Tell us your festival size and structure. We'll tell you honestly what you need (and what you don't).",
+    "Tell us your event size and structure. We'll tell you honestly what you need (and what you don't).",
   cta: { label: "Talk to Us", href: "/contact" },
 };

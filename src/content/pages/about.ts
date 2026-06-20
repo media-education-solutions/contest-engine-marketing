@@ -15,10 +15,10 @@ export const founderStory: NarrativeProps = {
   kicker: "The founder",
   title: "A lifetime helping students find their voice",
   paragraphs: [
-    "Jeb Brunt is a Florida native, a graduate of the University of Central Florida's Radio/Television program, and a retired educator who spent 24 years teaching broadcast journalism and media production in public schools.",
+    "Jeb Brunt is a Florida native, a graduate of the University of Central Florida's Radio/Television program, and a retired educator who spent 29 years teaching broadcast journalism and media production in public schools.",
     "Long before content creation became an industry, he was helping students learn how to tell stories, produce videos, and build audiences. His student media programs earned national recognition, and his work expanded beyond the classroom to help shape some of the largest student media competitions in the country, including programs for the Student Television Network.",
-    `After years of running national-scale contests on forms, spreadsheets, and email threads, he founded ${site.companyShortName} and built ${site.productName}: the platform he always needed and could never buy.`,
-    "Today the company serves statewide festivals and media programs, with one belief at the center of everything it builds.",
+    `After years of running national-scale contests on flashdrives, spreadsheets, and email threads, he founded ${site.companyShortName} and built ${site.productName}: the platform he always needed and could never buy.`,
+    "Today the company serves media events and programs around the nation, with one belief at the center of everything it builds.",
   ],
   pullQuote: "People want their work to matter.",
 };
@@ -59,6 +59,6 @@ export const beliefs: FeatureGridProps = {
 export const ctaBanner: CtaBannerProps = {
   title: "We'd love to hear about your program",
   subtitle:
-    "Real humans read every message — usually the founder.",
+    "Real humans read every message, usually the founder.",
   cta: { label: "Talk to Us", href: "/contact" },
 };
