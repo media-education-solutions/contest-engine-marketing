@@ -43,7 +43,7 @@ export default function BlocksPlayground() {
       <main>
         <BlockLabel>Hero</BlockLabel>
         <Hero
-          kicker="Student media festivals"
+          kicker="Film & photo competitions"
           title="Run your media contest on one platform —"
           titleAccent="from submission to celebration."
           subtitle={site.description}
@@ -75,7 +75,7 @@ export default function BlocksPlayground() {
             {
               name: "Collect",
               title: "Open your contest",
-              body: "Create categories, set deadlines, and hand out access codes. Students upload video or photo entries from any device — no accounts needed.",
+              body: "Create categories, set deadlines, and hand out access codes. Participants upload video or photo entries from any device — no account creation needed.",
             },
             {
               name: "Evaluate",
@@ -85,7 +85,7 @@ export default function BlocksPlayground() {
             {
               name: "Activate",
               title: "Celebrate the winners",
-              body: "Publish winner showcases in a click. Students get their feedback, and you get a rights-cleared library of their best work.",
+              body: "Publish winner showcases in a click. Participants review their feedback, and you get a rights-cleared library of their best work.",
             },
           ]}
         />
@@ -93,8 +93,8 @@ export default function BlocksPlayground() {
         <BlockLabel>FeatureGrid</BlockLabel>
         <FeatureGrid
           kicker="Why it wins"
-          title="Everything a festival needs, nothing it doesn't"
-          intro="Purpose-built by a 24-year media educator who ran national-scale student competitions."
+          title="Everything a media competition needs, nothing it doesn't"
+          intro="Built with purpose by a media educator who spent 29 years in the classroom, and ran national-scale student competitions."
           tone="muted"
           features={[
             {
@@ -105,7 +105,7 @@ export default function BlocksPlayground() {
             {
               icon: QrCode,
               title: "Code-based entry",
-              body: "Students join with a contest code and participant code. No student accounts, no emails collected.",
+              body: "Participants join with a contest link and participant code. No accounts to create, no email addresses required.",
             },
             {
               icon: ShieldCheck,
@@ -115,17 +115,17 @@ export default function BlocksPlayground() {
             {
               icon: MessageSquareText,
               title: "Real feedback",
-              body: "Every student can receive written feedback from judges — recognition and growth, not just a scoreboard.",
+              body: "Every participant can receive written feedback from judges — recognition and growth, not just a scoreboard.",
             },
             {
               icon: Award,
               title: "Winner showcases",
-              body: "Publish top-three galleries with one click. Share by URL or embed them on your school site.",
+              body: "Publish winner galleries with one click. Share by URL or embed them on your organization's website.",
             },
             {
               icon: Upload,
               title: "Own the archive",
-              body: "Download original files in bulk. Every contest builds your program's media library.",
+              body: "Every upload is yours. Download original files in bulk. Every contest grows your organization's rights-cleared media library.",
             },
           ]}
         />
@@ -136,19 +136,19 @@ export default function BlocksPlayground() {
           title="Frequently asked questions"
           items={[
             {
-              question: "Do students need to create accounts?",
+              question: "Do participants need to create accounts?",
               answer:
-                "No. Students enter with a contest code and a participant code provided by their teacher. We never collect student emails or personal accounts.",
+                "No. Participants access a contest using a link and a code provided by their group leader. We never require personal accounts or private information to participate.",
             },
             {
-              question: "What file types can students submit?",
+              question: "What file types can participants submit?",
               answer:
                 "Video and photo categories are supported today, with audio on the roadmap. Uploads are resumable, so a dropped connection never loses work.",
             },
             {
               question: "How does judging stay fair?",
               answer:
-                "Judges see anonymized entries labeled A, B, C — never student names. Scores use a guided 1–10 scale with named tiers, and admins review everything before results go public.",
+                "Judges see anonymized entries labeled A, B, C — never participant names. Scores use a guided 1–10 scale with named tiers, and admins review everything before results go public.",
             },
           ]}
         />
@@ -187,7 +187,7 @@ export default function BlocksPlayground() {
         <BlockLabel>CtaBanner</BlockLabel>
         <CtaBanner
           title="Ready to retire the spreadsheets?"
-          subtitle="Tell us about your festival and we'll show you what it looks like running on one platform."
+          subtitle="Tell us about your media contest and we'll show you what it looks like running on one platform."
           cta={{ label: "Talk to Us", href: "/contact" }}
           secondaryCta={{ label: "See how it works", href: "/how-it-works" }}
         />

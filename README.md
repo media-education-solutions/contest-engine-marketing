@@ -1,6 +1,6 @@
 # Contest Engine — Marketing Website
 
-Marketing site for [Contest Engine](https://contest-engine.com) by Media Education Solutions, Inc. — the platform for running student film & photo festivals: collect submissions, manage fair anonymous judging, celebrate winners.
+Marketing site for [Contest Engine](https://contest-engine.com) by Media Education Solutions, Inc. — the platform for running film & photo contests and media competitions: collect submissions, manage fair anonymous judging, celebrate winners.
 
 ## Stack
 Next.js (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui · Vercel
@@ -8,7 +8,7 @@ Next.js (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui · Vercel
 ## Development
 ```bash
 npm install
-npm run dev        # http://localhost:3000
+npm run dev        # http://localhost:3010
 npm run lint
 npm run typecheck
 npm run build

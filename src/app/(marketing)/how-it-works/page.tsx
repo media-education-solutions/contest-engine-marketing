@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
   path: "/how-it-works",
 });
 
-// Temporary demo-contest media (Spring Student Film Festival seed).
+// Temporary demo-contest media (sample contest seed).
 const mediaByRole: Record<string, ReactNode> = {
   organizers: (
     <VideoEmbed
@@ -27,8 +27,8 @@ const mediaByRole: Record<string, ReactNode> = {
   ),
   students: (
     <ScreenshotShowcase
-      src="/assets/photo/student/student_contest_results.png"
-      alt="A student's submissions, status, and judge feedback"
+      src="/assets/photo/participant/participant_contest_results.png"
+      alt="A participant's submissions, status, and judge feedback"
       aspect="4/3"
       fit="contain"
     />
