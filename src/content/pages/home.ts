@@ -24,7 +24,7 @@ export const hero: Omit<HeroProps, "media"> = {
 };
 
 export const logoCloud: LogoCloudProps = {
-  title: "Trusted by student media programs",
+  title: "Trusted by media programs",
   logos: [
     { name: "Shoots Summit Hawai'i" },
     { name: "ASB 4-State" },

@@ -58,7 +58,7 @@ export default function BlocksPlayground() {
 
         <BlockLabel>LogoCloud (text fallback, no logo files yet)</BlockLabel>
         <LogoCloud
-          title="Trusted by student media programs"
+          title="Trusted by media programs"
           logos={[
             { name: "Shoots Summit Hawai'i" },
             { name: "ASB 4-State" },
