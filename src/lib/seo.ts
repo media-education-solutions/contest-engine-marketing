@@ -24,7 +24,7 @@ export function pageMetadata({
     alternates: { canonical },
     ...(noindex ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
-      title: title ?? `${site.productName} — Student Media Contest & Festival Platform`,
+      title: title ?? `${site.productName} — Media Contest & Festival Platform`,
       description,
       url: canonical,
       siteName: site.productName,

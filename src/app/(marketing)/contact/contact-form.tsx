@@ -117,7 +117,7 @@ export function ContactForm() {
           name="message"
           rows={6}
           required
-          placeholder="Tell us about your festival: how many students, what kinds of categories, when it runs…"
+          placeholder="Tell us about your contest: how many participants, what kinds of categories, when it runs…"
           defaultValue={state.values?.message}
         />
         <FieldError message={state.fieldErrors?.message} />

@@ -9,7 +9,7 @@ import * as content from "@/content/pages/pricing";
 
 export const metadata = pageMetadata({
   title: "Pricing",
-  description: `${site.productName} plans from a free trial contest to statewide festival programs, with Founder Legacy Pricing at 50% off, locked in for up to 5 years.`,
+  description: `${site.productName} plans from a free trial contest to nationwide media programs, with Founder Legacy Pricing at 50% off, locked in for up to 3 years.`,
   path: "/pricing",
 });
 

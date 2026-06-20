@@ -15,16 +15,16 @@ import type { CtaBannerProps } from "@/components/blocks/cta-banner";
 import { site } from "@/content/site";
 
 export const hero: Omit<HeroProps, "media"> = {
-  kicker: "Student film & photo festivals",
+  kicker: "Film & photo competitions",
   title: "Run your media contest on one platform —",
   titleAccent: "from submission to celebration.",
-  subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect student video and photo entries, run fair anonymous judging, and celebrate every winner, all in one place.`,
+  subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect video and photo entries, run fair anonymous judging, and celebrate every winner, all in one place.`,
   primaryCta: { label: "See how it works", href: "/how-it-works" },
   secondaryCta: { label: "Talk to Us", href: "/contact" },
 };
 
 export const logoCloud: LogoCloudProps = {
-  title: "Trusted by student media programs",
+  title: "Trusted by media programs",
   logos: [
     { name: "Shoots Summit Hawai'i" },
     { name: "ASB 4-State" },
@@ -34,7 +34,7 @@ export const logoCloud: LogoCloudProps = {
 
 export const beforeAfter: BeforeAfterProps = {
   kicker: "Why we built this",
-  title: "Festival season shouldn't run on spreadsheets",
+  title: "Media competitions shouldn't run on spreadsheets",
   before: {
     label: "The old way",
     items: [
@@ -59,42 +59,42 @@ export const processSteps: ProcessStepsProps = {
   kicker: "How it works",
   title: site.tagline,
   intro:
-    "Three steps take your festival from open call to awards night, without the administrative chaos.",
+    "Three steps take your media contest event from start to finish, without the administrative chaos.",
   steps: [
     {
       name: "Collect",
       title: "Open your contest",
-      body: "Create categories, set deadlines, and hand out access codes. Students upload video or photo entries from any device. No student accounts needed.",
+      body: "Create categories, set deadlines, and hand out access codes. Participants upload video or photo entries from any device. No account creation needed.",
     },
     {
       name: "Evaluate",
       title: "Judge fairly, anywhere",
-      body: "Judges score anonymous entries on a guided 1–10 scale, write feedback, and rank their top three, on their own schedule.",
+      body: "Judges score anonymous entries on a guided 1–10 scale, write feedback, and rank the top submissions, on their own schedule.",
     },
     {
       name: "Activate",
       title: "Celebrate the winners",
-      body: "Publish winner showcases in a click. Students get their feedback, and your program builds a library of its best work.",
+      body: "Publish winner showcases in a click. Participants review their feedback, and your organization builds a library of its best work.",
     },
   ],
 };
 
 export const featureGrid: FeatureGridProps = {
   kicker: `Why ${site.productName}`,
-  title: "Everything a festival needs, nothing it doesn't",
+  title: "Everything a media competition needs, nothing it doesn't",
   intro:
-    "Purpose-built by a 24-year media educator who ran national-scale student competitions, not adapted from generic contest software.",
+    "Built with purpose by a media educator who spent 29 years in the classroom, and ran national-scale student competitions.",
   tone: "muted",
   features: [
     {
       icon: Film,
       title: "Video & photo entries",
-      body: "Resumable uploads that survive school Wi-Fi. Entries are transcoded and stream instantly when judging opens.",
+      body: "Reliable uploads that survive poor Wi-Fi conditions at hotels, schools, and convention halls. Wi-Fi starts to buffer? Your work is safe for up to 72 hours, and will resume uploading when the connection strengthens. Entries are transcoded and stream instantly when judging opens.",
     },
     {
       icon: QrCode,
-      title: "Code-based student entry",
-      body: "Students join with a contest code and participant code. No accounts to create, no student emails collected.",
+      title: "Code-based participant entry",
+      body: "Participants join with a contest link and participant code. No accounts to create, no email addresses required.",
     },
     {
       icon: ShieldCheck,
@@ -103,18 +103,18 @@ export const featureGrid: FeatureGridProps = {
     },
     {
       icon: MessageSquareText,
-      title: "Feedback for every student",
-      body: "Judges leave written feedback alongside scores: recognition and growth, not just a scoreboard.",
+      title: "Feedback for every participant",
+      body: "Judges leave written feedback alongside scores, providing recognition and opportunities for growth. It's not just a scoreboard.",
     },
     {
       icon: Award,
       title: "Winner showcases",
-      body: "Publish top-three galleries with one click. Share by URL or embed them on your school's site.",
+      body: "Publish winner galleries with one click. Share by URL or embed them on your organization's website.",
     },
     {
       icon: Download,
       title: "Own your archive",
-      body: "Download original files in bulk. Every contest grows your program's rights-cleared media library.",
+      body: "Every upload is yours. Download original files in bulk. Every contest grows your organization's rights-cleared media library.",
     },
   ],
 };
@@ -122,7 +122,7 @@ export const featureGrid: FeatureGridProps = {
 export const ctaBanner: CtaBannerProps = {
   title: "Ready to retire the spreadsheets?",
   subtitle:
-    "Tell us about your festival and we'll show you what it looks like running on one platform.",
+    "Tell us about your media contest and we'll show you what it looks like running on one platform.",
   cta: { label: "Talk to Us", href: "/contact" },
   secondaryCta: { label: "See how it works", href: "/how-it-works" },
 };

@@ -22,13 +22,13 @@ export const intro: PageIntroProps = {
 export const lead: Omit<FeatureSplitProps, "media"> = {
   id: "scholastic",
   kicker: "Our home turf",
-  title: "Scholastic media programs & student festivals",
-  body: "State associations, journalism programs, media educators, and student conventions, running film festivals, photo contests, and multimedia storytelling competitions from a single classroom to statewide scale.",
+  title: "Scholastic media programs & student media events",
+  body: "Designed for journalism, broadcasting, filmmaking, photography, and multimedia storytelling competitions, at any size, from single classroom challenges to large-scale nationwide media contest events.",
   bullets: [
-    "Divisions for elementary, middle, and high school in one contest",
-    "Code-based entry that respects student privacy: no accounts, no emails",
-    "Judges drawn from industry pros and faculty, working remotely on their schedule",
-    "Winner showcases ready for the awards ceremony and the school website",
+    "Custom divisions that can be based on age, skill, or grade level",
+    "Code-based entry that respects participant privacy: no accounts, no emails required",
+    "Judges can be drawn from industry professionals, working remotely on their schedule",
+    "Winner showcasing tools optimized for the awards ceremony and ready for the school website",
   ],
 };
 

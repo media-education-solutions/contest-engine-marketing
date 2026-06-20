@@ -13,7 +13,7 @@ export default function NotFound() {
       </h1>
       <p className="max-w-md text-lg text-muted-foreground">
         The page you&apos;re looking for was cut in editing. Let&apos;s get you
-        back to the festival.
+        back to the contest.
       </p>
       <Button asChild size="lg">
         <Link href="/">Back to home</Link>
