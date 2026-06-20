@@ -22,10 +22,10 @@ export const pricing: PricingTiersProps = {
       name: "Trial",
       audience: "Try the full workflow with one small contest.",
       price: "$49",
-      priceNote: "one category contest",
+      priceNote: "per contest",
       legacyPrice: "Free",
       features: [
-        "One contest with multiple categories",
+        "One single-category contest",
         "Up to 25 participant codes",
         "Basic judging workflow",
         "Results publishing & winner recognition",
@@ -38,7 +38,7 @@ export const pricing: PricingTiersProps = {
       priceNote: "per year",
       legacyPrice: "$149/yr",
       features: [
-        "Multiple contests with configurable categories & divisions",
+        "Multiple configurable categories & divisions",
         "Up to 100 submissions (100 participant codes), files up to 500MB",
         "Judging with standard & ranking tools",
         "Judge feedback & participant levels",
@@ -155,7 +155,7 @@ export const faq: FaqProps = {
     {
       question: "Is there a free way to evaluate it first?",
       answer:
-        "Yes. The Trial tier is free under Founder Legacy Pricing and runs one real contest with multiple categories and up to 25 participants, so you can take the full workflow for a spin before committing.",
+        "Yes. The Trial tier is free under Founder Legacy Pricing and runs one real contest with a single category and up to 25 participants, so you can take the full workflow for a spin before committing.",
     },
     {
       question: "Do you offer demos?",
