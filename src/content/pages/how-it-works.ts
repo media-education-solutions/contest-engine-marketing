@@ -3,7 +3,7 @@ import type { CtaBannerProps } from "@/components/blocks/cta-banner";
 
 export const intro = {
   kicker: "How it works",
-  title: "One workflow. From submission, to recognition.",
+  title: "One workflow.\nFrom submission, to recognition.",
   subtitle: `We help contests move through four stages: create, collect, judge, celebrate. Here's how it works for your whole organization.`,
 };
 

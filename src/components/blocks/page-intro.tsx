@@ -19,7 +19,7 @@ export function PageIntro({ kicker, title, subtitle }: PageIntroProps) {
           </Reveal>
         )}
         <Reveal delay={80}>
-          <h1 className="mx-auto mt-4 max-w-3xl text-4xl text-balance sm:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-4xl text-4xl text-balance whitespace-pre-line sm:text-5xl">
             {title}
           </h1>
         </Reveal>
