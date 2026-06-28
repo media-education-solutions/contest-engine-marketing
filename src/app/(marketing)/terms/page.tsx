@@ -1,21 +1,21 @@
-import type { Metadata } from "next";
-import { Container } from "@/components/layout/section";
+import { pageMetadata } from "@/lib/seo";
+import { PageIntro } from "@/components/blocks/page-intro";
+import { LegalDoc } from "@/components/blocks/legal-doc";
 import { site } from "@/content/site";
+import * as content from "@/content/pages/terms";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms of Service",
-  robots: { index: false }, // unindexed until real terms text lands
-};
+  description: `The terms governing access to and use of ${site.productName}, a contest management and content evaluation platform operated by ${site.companyName}.`,
+  path: "/terms",
+  noindex: true,
+});
 
 export default function TermsPage() {
   return (
-    <Container className="max-w-3xl py-16 sm:py-24">
-      <h1 className="text-4xl">Terms of Service</h1>
-      <p className="mt-6 leading-relaxed text-muted-foreground">
-        Full terms coming soon. {site.productName} is offered by{" "}
-        {site.companyName}. Until formal terms are published here, platform
-        agreements are handled directly with each organization.
-      </p>
-    </Container>
+    <>
+      <PageIntro {...content.intro} />
+      <LegalDoc {...content.doc} />
+    </>
   );
 }
