@@ -16,7 +16,7 @@ import { site } from "@/content/site";
 
 export const hero: Omit<HeroProps, "media"> = {
   kicker: "Film & photo competitions",
-  title: "Run your media contest on one platform —",
+  title: "Run your media contest on one platform,",
   titleAccent: "from submission to celebration.",
   subtitle: `${site.productName} replaces the maze of forms, spreadsheets, and email chains. Collect video and photo entries, run fair anonymous judging, and celebrate every winner, all in one place.`,
   primaryCta: { label: "See how it works", href: "/how-it-works" },

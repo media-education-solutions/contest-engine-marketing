@@ -9,7 +9,7 @@ import * as content from "@/content/pages/pricing";
 
 export const metadata = pageMetadata({
   title: "Pricing",
-  description: `${site.productName} plans from a free trial contest to nationwide media programs, with Founder Legacy Pricing at 50% off, locked in for up to 3 years.`,
+  description: `${site.productName} offers flexible, configurable suite deployments for scholastic, corporate, and sports media programs. Talk to us to scope a plan for your event.`,
   path: "/pricing",
 });
 
@@ -19,15 +19,12 @@ const productSchema = {
   name: site.productName,
   description: site.description,
   brand: { "@id": `${site.url}/#organization` },
-  offers: [...content.pricing.tiers, ...(content.pricing.suites?.tiers ?? [])].map(
-    (tier) => ({
-      "@type": "Offer",
-      name: tier.name,
-      price: tier.price.replace(/[$,]/g, ""),
-      priceCurrency: "USD",
-      description: tier.audience,
-    }),
-  ),
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "500",
+    highPrice: "20000",
+  },
 };
 
 export default function PricingPage() {

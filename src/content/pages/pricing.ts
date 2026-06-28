@@ -14,46 +14,15 @@ export const intro: PageIntroProps = {
 export const pricing: PricingTiersProps = {
   title: "Annual plans",
   notice: {
-    title: "Founder Legacy Pricing — 50% off, locked in",
-    body: "Early customers get half off, honored for continuous renewal up to 3 years. The prices below show both.",
+    title: "Pricing that scales to your event",
+    body: "Flexible suite configurations and deployment options ranging from $500–$20,000. We scale to every size and shape to match your event!",
   },
   tiers: [
     {
-      name: "Trial",
-      audience: "Try the full workflow with one small contest.",
-      price: "$49",
-      priceNote: "per contest",
-      legacyPrice: "Free",
-      features: [
-        "One single-category contest",
-        "Up to 25 participant codes",
-        "Basic judging workflow",
-        "Results publishing & winner recognition",
-      ],
-    },
-    {
-      name: "Teacher Suite",
-      audience: "Individual educators and classroom programs.",
-      price: "$399",
-      priceNote: "per year",
-      legacyPrice: "$149/yr",
-      features: [
-        "Multiple configurable categories & divisions",
-        "Up to 100 submissions (100 participant codes), files up to 500MB",
-        "Judging with standard & ranking tools",
-        "Judge feedback & participant levels",
-        "Winner showcase pages, entries downloadable",
-      ],
-      featured: true,
-    },
-    {
       name: "Coordinator Suite",
       audience: "Coordinators running larger events and competitions.",
-      price: "$1,500",
-      priceNote: "per year",
-      legacyPrice: "$600/yr",
       features: [
-        "Everything in Teacher Suite",
+        "Configurable categories, divisions & judging tools",
         "Up to 250 submissions",
         "125 GB stream storage",
         "QR code & unlimited participant code access",
@@ -65,9 +34,6 @@ export const pricing: PricingTiersProps = {
     {
       name: "Advanced Coordinator",
       audience: "Events that need registration management too.",
-      price: "$5,000",
-      priceNote: "per year",
-      legacyPrice: "$2,500/yr",
       features: [
         "Everything in Coordinator Suite",
         "Up to 1,000 submissions",
@@ -85,9 +51,6 @@ export const pricing: PricingTiersProps = {
       {
         name: "Scholastic Media Suite",
         audience: "Educational media organizations with year-round programs.",
-        price: "$10,000",
-        priceNote: "per year",
-        legacyPrice: "$4,000/yr",
         features: [
           "Multiple contests with configurable categories & divisions",
           "Up to 2,000 submissions across multiple annual programs",
@@ -101,9 +64,6 @@ export const pricing: PricingTiersProps = {
       {
         name: "Corporate Media Suite",
         audience: "Brands activating customers, employees & ambassadors.",
-        price: "$10,000",
-        priceNote: "per year",
-        legacyPrice: "$4,000/yr",
         features: [
           "Up to 2,000 submissions, multiple annual campaigns",
           "1 TB stream storage",
@@ -116,9 +76,6 @@ export const pricing: PricingTiersProps = {
       {
         name: "Sports Marketing Suite",
         audience: "Teams, universities & fan engagement initiatives.",
-        price: "$20,000",
-        priceNote: "per year",
-        legacyPrice: "$8,000/yr",
         features: [
           "Up to 5,000 submissions",
           "10 TB stream storage",
@@ -138,9 +95,9 @@ export const faq: FaqProps = {
   title: "The fine print, in plain English",
   items: [
     {
-      question: "What is Founder Legacy Pricing exactly?",
+      question: "How much does Contest Engine cost?",
       answer:
-        "A 50% discount for early customers, honored for continuous renewal for up to 3 years. Lock it in now and your price stays put while the program grows.",
+        "Pricing depends on your event's size and structure. Every suite is configured per organization. Tell us what you're running and we'll scope the right setup.",
     },
     {
       question: "What counts as a submission?",
@@ -153,9 +110,9 @@ export const faq: FaqProps = {
         `Yes. If your event outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
     },
     {
-      question: "Is there a free way to evaluate it first?",
+      question: "Is there a way to evaluate it first?",
       answer:
-        "Yes. The Trial tier is free under Founder Legacy Pricing and runs one real contest with a single category and up to 25 participants, so you can take the full workflow for a spin before committing.",
+        `Yes. Reach out and we'll set you up to run a real contest end to end so you can take the full ${site.productName} workflow for a spin before committing.`,
     },
     {
       question: "Do you offer demos?",
