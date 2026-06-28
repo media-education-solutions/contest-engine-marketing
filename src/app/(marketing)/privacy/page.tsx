@@ -1,22 +1,21 @@
-import type { Metadata } from "next";
-import { Container } from "@/components/layout/section";
+import { pageMetadata } from "@/lib/seo";
+import { PageIntro } from "@/components/blocks/page-intro";
+import { LegalDoc } from "@/components/blocks/legal-doc";
 import { site } from "@/content/site";
+import * as content from "@/content/pages/privacy";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
-  robots: { index: false }, // unindexed until real policy text lands
-};
+  description: `How ${site.productName} collects, uses, stores, and protects information on behalf of the organizations that run contests on the platform.`,
+  path: "/privacy",
+  noindex: true,
+});
 
 export default function PrivacyPage() {
   return (
-    <Container className="max-w-3xl py-16 sm:py-24">
-      <h1 className="text-4xl">Privacy Policy</h1>
-      <p className="mt-6 leading-relaxed text-muted-foreground">
-        Full policy coming soon. In short: {site.productName} collects only what
-        the contact form asks for, never collects participant personal information
-        through this website, and never sells data. Questions in the meantime?
-        Reach out via the contact page.
-      </p>
-    </Container>
+    <>
+      <PageIntro {...content.intro} />
+      <LegalDoc {...content.doc} />
+    </>
   );
 }

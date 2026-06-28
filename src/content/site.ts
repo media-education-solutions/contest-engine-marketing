@@ -71,6 +71,8 @@ export const footer = {
       items: [
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
+        { label: "Student Privacy", href: "/student-privacy" },
+        { label: "Data Processing", href: "/data-processing-addendum" },
       ],
     },
   ],
