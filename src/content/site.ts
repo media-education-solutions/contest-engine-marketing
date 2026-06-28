@@ -48,6 +48,7 @@ export const nav: { items: NavItem[]; cta: NavItem } = {
 
 export const footer = {
   tagline: site.tagline,
+  attribution: `A product of ${site.companyName}`,
   copyright: `© ${new Date().getFullYear()} ${site.companyName}`,
   groups: [
     {

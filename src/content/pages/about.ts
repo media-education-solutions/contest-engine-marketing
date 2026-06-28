@@ -9,6 +9,15 @@ export const intro: PageIntroProps = {
   kicker: "Who we are",
   title: "Media Education Solutions",
   subtitle: site.mission,
+  logo: {
+    src: "/brand/mes-lockup.png",
+    alt: `${site.companyShortName} logo`,
+    width: 1384,
+    height: 345,
+  },
+  logoSize: "lg",
+  logoPosition: "after-kicker",
+  hideTitle: true,
 };
 
 export const founderStory: NarrativeProps = {

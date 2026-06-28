@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { pageMetadata } from "@/lib/seo";
 import { JsonLd, contactPageSchema } from "@/lib/jsonld";
 import { Kicker } from "@/components/ui/play-mark";
@@ -32,6 +33,20 @@ export default function ContactPage() {
             {site.productName}. Real humans read every message, usually the
             founder.
           </p>
+        </Reveal>
+        <Reveal delay={240}>
+          <div className="mt-10 border-t border-border pt-6">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              Operated by
+            </p>
+            <Image
+              src="/brand/mes-lockup-inline.png"
+              alt={`${site.companyName} logo`}
+              width={622}
+              height={100}
+              className="mt-3 h-14 w-auto sm:h-16"
+            />
+          </div>
         </Reveal>
       </div>
 

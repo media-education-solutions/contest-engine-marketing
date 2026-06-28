@@ -5,6 +5,13 @@ import { site } from "@/content/site";
 export const intro: PageIntroProps = {
   kicker: "Legal",
   title: "Privacy Policy",
+  logo: {
+    src: "/brand/mes-lockup.png",
+    alt: `${site.companyShortName} logo`,
+    width: 1384,
+    height: 345,
+  },
+  logoSize: "lg" as const,
 };
 
 export const doc: LegalDocProps = {
