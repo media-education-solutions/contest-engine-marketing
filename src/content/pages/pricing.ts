@@ -97,7 +97,7 @@ export const faq: FaqProps = {
     {
       question: "How much does Contest Engine cost?",
       answer:
-        "Pricing depends on your event's size and structure. Every suite is configured per organization. Tell us what you're running and we'll scope the right setup.",
+        "Pricing depends on your event's size and structure. Configurations range from $500–$20,000. Every suite is configured per organization — tell us what you're running and we'll scope the right setup.",
     },
     {
       question: "What counts as a submission?",
