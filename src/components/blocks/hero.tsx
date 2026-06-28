@@ -48,7 +48,9 @@ export function Hero({
           <Reveal delay={80}>
             <h1 className="text-4xl leading-[1.08] text-balance sm:text-5xl lg:text-[3.4rem]">
               {title}
-              {titleAccent && <span className="text-brand"> {titleAccent}</span>}
+              {titleAccent && titleAccent.split("\n").map((line, i) => (
+                <span key={i}><br /><span className="text-brand">{line}</span></span>
+              ))}
             </h1>
           </Reveal>
           <Reveal delay={160}>
