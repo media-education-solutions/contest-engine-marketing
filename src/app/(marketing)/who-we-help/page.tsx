@@ -3,7 +3,7 @@ import { PageIntro } from "@/components/blocks/page-intro";
 import { FeatureSplit } from "@/components/blocks/feature-split";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBanner } from "@/components/blocks/cta-banner";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import { ScreenshotShowcase } from "@/components/blocks/screenshot-showcase";
 import * as content from "@/content/pages/who-we-help";
 
 export const metadata = pageMetadata({
@@ -19,9 +19,12 @@ export default function WhoWeHelpPage() {
       <FeatureSplit
         {...content.lead}
         media={
-          <MediaPlaceholder
+          <ScreenshotShowcase
+            src={content.leadMedia.src}
+            alt={content.leadMedia.alt}
             aspect="4/3"
-            label="Participants filming at an event (photo slot)"
+            fit="cover"
+            priority
           />
         }
       />
