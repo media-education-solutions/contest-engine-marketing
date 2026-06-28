@@ -45,7 +45,8 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-background/10 pt-6 text-xs text-background/65">
-          {footer.copyright}
+          <p>{footer.attribution}</p>
+          <p className="mt-1">{footer.copyright}</p>
         </div>
       </div>
     </footer>
