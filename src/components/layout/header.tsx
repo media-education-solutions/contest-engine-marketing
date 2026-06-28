@@ -25,8 +25,8 @@ export function Header() {
           <Image
             src="/brand/ce-wordmark.png"
             alt={site.productName}
-            width={144}
-            height={54}
+            width={1214}
+            height={300}
             priority
             className="h-9 w-auto"
           />
