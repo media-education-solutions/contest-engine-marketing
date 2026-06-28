@@ -54,3 +54,6 @@ playwright-report/
 
 # lighthouse ci artifacts
 .lighthouseci/
+
+# Unprocessed source photos (processed assets live in public/assets/photo/founder/)
+old teacher pics/

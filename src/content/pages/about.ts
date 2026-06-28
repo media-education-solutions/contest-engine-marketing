@@ -23,6 +23,12 @@ export const intro: PageIntroProps = {
 export const founderStory: NarrativeProps = {
   kicker: "The founder",
   title: "A lifetime helping students find their voice",
+  image: {
+    src: "/assets/photo/founder/jeb-nemmys-students-awards.jpg",
+    alt: "Jeb Brunt with students holding awards at a national student media ceremony",
+    width: 1400,
+    height: 933,
+  },
   paragraphs: [
     "Jeb Brunt is a Florida native, a graduate of the University of Central Florida's Radio/Television program, and a retired educator who spent 29 years teaching broadcast journalism and media production in public schools.",
     "Long before content creation became an industry, he was helping students learn how to tell stories, produce videos, and build audiences. His student media programs earned national recognition, and his work expanded beyond the classroom to help shape some of the largest student media competitions in the country, including programs for the Student Television Network.",

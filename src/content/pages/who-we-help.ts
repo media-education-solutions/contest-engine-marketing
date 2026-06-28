@@ -18,6 +18,11 @@ export const intro: PageIntroProps = {
   subtitle: `${site.productName} was born in scholastic media and runs deepest there. But the engine underneath (collect, evaluate, activate) fits any organization that turns participation into creative work.`,
 };
 
+export const leadMedia = {
+  src: "/assets/photo/founder/jeb-control-room-students.webp",
+  alt: "Founder Jeb Brunt working alongside students at a broadcast control desk",
+};
+
 /** Lead segment gets the full split treatment (photo slot for deployment shots). */
 export const lead: Omit<FeatureSplitProps, "media"> = {
   id: "scholastic",
