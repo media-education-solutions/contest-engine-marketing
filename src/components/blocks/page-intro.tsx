@@ -32,7 +32,7 @@ export function PageIntro({
   const logoClass = `mx-auto w-auto max-w-full ${mb} ${h}`;
 
   const logoEl = logo && (
-    <Reveal>
+    <Reveal className={logoPosition === "after-kicker" ? "-mb-3" : ""}>
       <Image
         src={logo.src}
         alt={logo.alt}
