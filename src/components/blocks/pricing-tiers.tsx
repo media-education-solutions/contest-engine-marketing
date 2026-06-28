@@ -10,10 +10,9 @@ import { cn } from "@/lib/utils";
 export type PricingTier = {
   name: string;
   audience: string;
-  price: string;
+  price?: string;
   /** e.g. "per year" or "one contest" */
-  priceNote: string;
-  legacyPrice?: string;
+  priceNote?: string;
   features: string[];
   featured?: boolean;
 };
@@ -22,7 +21,7 @@ export type PricingTiersProps = {
   kicker?: string;
   title: string;
   intro?: string;
-  /** Banner above the cards (e.g. Founder Legacy Pricing). */
+  /** Banner above the cards. */
   notice?: { title: string; body: string };
   tiers: PricingTier[];
   /** Wider cards in a second row (program/org suites). */
@@ -55,15 +54,13 @@ function TierCard({
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         {tier.audience}
       </p>
-      <div className="mt-5">
-        <span className="font-heading text-4xl font-bold">{tier.price}</span>
-        <span className="ml-2 text-sm text-muted-foreground">{tier.priceNote}</span>
-      </div>
-      {tier.legacyPrice && (
-        <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-brand">
-          <BadgePercent className="size-4" />
-          {tier.legacyPrice} with Founder Legacy Pricing
-        </p>
+      {tier.price && (
+        <div className="mt-5">
+          <span className="font-heading text-4xl font-bold">{tier.price}</span>
+          {tier.priceNote && (
+            <span className="ml-2 text-sm text-muted-foreground">{tier.priceNote}</span>
+          )}
+        </div>
       )}
       <ul className="mt-6 flex-1 space-y-3">
         {tier.features.map((feature) => (
@@ -127,7 +124,7 @@ export function PricingTiers({
         </Reveal>
       )}
 
-      <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mx-auto mt-12 grid max-w-3xl gap-5 md:grid-cols-2">
         {tiers.map((tier, i) => (
           <Reveal key={tier.name} delay={i * 80} className="h-full">
             <TierCard tier={tier} cta={cta} />

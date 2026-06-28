@@ -117,7 +117,7 @@ export const faq: FaqProps = {
     {
       question: "What does it cost?",
       answer:
-        "Plans begin with a single small contest and scale by event size. See the pricing page. Founder Legacy Pricing currently offers 50% off, locked in for up to three years of continuous renewal.",
+        "Pricing is configured to your event's size and structure, with flexible suite deployments. See the pricing page, or talk to us to scope a plan.",
     },
   ],
 };

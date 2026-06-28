@@ -14,7 +14,7 @@ import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Who we help",
-  title: "Made for student media — ready for every kind of contest",
+  title: "Made for student media. Ready for every kind of contest",
   subtitle: `${site.productName} was born in scholastic media and runs deepest there. But the engine underneath (collect, evaluate, activate) fits any organization that turns participation into creative work.`,
 };
 
@@ -27,7 +27,7 @@ export const lead: Omit<FeatureSplitProps, "media"> = {
   bullets: [
     "Custom divisions that can be based on age, skill, or grade level",
     "Code-based entry that respects participant privacy: no accounts, no emails required",
-    "Judges can be drawn from industry professionals, working remotely on their schedule",
+    "Judges can be drawn from industry professionals, working remotely",
     "Winner showcasing tools optimized for the awards ceremony and ready for the school website",
   ],
 };
