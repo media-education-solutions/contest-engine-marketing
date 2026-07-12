@@ -29,18 +29,18 @@ export function FeatureGrid({
 }: FeatureGridProps) {
   return (
     <Section tone={tone}>
-      <div className="max-w-2xl">
+      <div>
         {kicker && (
           <Reveal>
             <Kicker>{kicker}</Kicker>
           </Reveal>
         )}
         <Reveal delay={80}>
-          <h2 className="mt-4 text-3xl text-balance sm:text-4xl">{title}</h2>
+          <h2 className="mt-4 max-w-4xl text-3xl text-balance whitespace-pre-line sm:text-4xl">{title}</h2>
         </Reveal>
         {intro && (
           <Reveal delay={160}>
-            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               {intro}
             </p>
           </Reveal>

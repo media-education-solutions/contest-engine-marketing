@@ -6,125 +6,132 @@ import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Pricing",
-  title: "Plans that scale with your organization",
-  subtitle:
-    "From a single classroom contest to a nationwide media event. Start small, grow when your organization does.",
+  title: "Simple pricing. Flexible deployments.",
+  subtitle: `Whether you're running a classroom challenge or a nationwide media competition, there's a ${site.productName} built for you.`,
 };
 
 export const pricing: PricingTiersProps = {
   title: "Annual plans",
-  notice: {
-    title: "Pricing that scales to your event",
-    body: "Flexible suite configurations and deployment options ranging from $500–$20,000. We scale to every size and shape to match your event!",
-  },
   tiers: [
     {
-      name: "Coordinator Suite",
-      audience: "Coordinators running larger events and competitions.",
+      name: "Teacher Portal",
+      audience: "Professional media contests for classrooms and small creative programs.",
+      price: "$300",
+      priceNote: "per year",
       features: [
-        "Configurable categories, divisions & judging tools",
-        "Up to 250 submissions",
-        "125 GB stream storage",
-        "QR code & unlimited participant code access",
-        "Configurable entries per category & winner slots",
-        "Advanced sharing: Copy URL & Copy Embed",
-        "Add-on submissions & storage available",
+        "One branded contest portal",
+        "Multiple photo and video categories",
+        "Anonymous judging with written feedback",
+        "Three-place winners podium",
+        "Results publishing and winner showcases",
+        "Download, embed, and share winning work",
+        "25 participant access codes",
+        "25 GB media library with configurable upload limits",
       ],
+      cta: { label: "Buy Now", href: "/contact" },
     },
     {
-      name: "Advanced Coordinator",
-      audience: "Events that need registration management too.",
+      name: "Coordinator Portal",
+      audience: "Built for schools, nonprofit coordinators, and growing media programs.",
+      price: "$1,200",
+      priceNote: "per year",
       features: [
-        "Everything in Coordinator Suite",
-        "Up to 1,000 submissions",
-        "500 GB stream storage",
-        "Contest, participant & advisor registration",
-        "Event registration workflows",
-        "Advanced administrative tools",
-        "Add-on submissions & storage available",
+        "Everything in the Teacher Portal",
+        "Configurable divisions and categories",
+        "Multiple submissions and portfolio entries",
+        "Up to five-place winners podium",
+        "QR code participant access",
+        "100 participant access codes",
+        "100 GB media library",
+        "180-day media hosting and streaming",
       ],
+      cta: { label: "Buy Now", href: "/contact" },
     },
   ],
   suites: {
-    title: "Program & organization suites",
+    title: "Suite deployments",
     tiers: [
       {
         name: "Scholastic Media Suite",
-        audience: "Educational media organizations with year-round programs.",
+        audience: "For organizations running large-scale media competitions year-round.",
         features: [
-          "Multiple contests with configurable categories & divisions",
-          "Up to 2,000 submissions across multiple annual programs",
-          "1 TB stream storage",
-          "Contest registration system",
-          "Advanced judging & results sharing tools",
-          "Winner showcase pages",
-          "Event support and training",
+          "Multiple contest events",
+          "Multiple divisions and categories",
+          "Branded participant portals",
+          "Anonymous judging workflows",
+          "Contest operator management",
+          "Event registration system",
+          "Flexible media library options",
+          "Advanced results publishing and winner showcases",
+          "Everything you need to manage complex media competitions",
         ],
       },
       {
-        name: "Corporate Media Suite",
-        audience: "Brands activating customers, employees & ambassadors.",
+        name: "Marketing & Corporate Suite",
+        audience: "Turn your community into your creative team. Built for brands and creator communities running user-generated content campaigns.",
         features: [
-          "Up to 2,000 submissions, multiple annual campaigns",
-          "1 TB stream storage",
-          "Registration system",
-          "Specialized evaluation workflows",
-          "Content activation & asset management tools",
-          "Priority support",
+          "Multiple campaign events",
+          "Branded participant portals",
+          "Photo and video submissions",
+          "Anonymous evaluation workflows",
+          "Campaign operator management",
+          "QR code participant access",
+          "Flexible media library options",
+          "Advanced publishing and showcase tools",
+          "Rights-managed media collection for future marketing",
         ],
       },
-      {
-        name: "Sports Marketing Suite",
-        audience: "Teams, universities & fan engagement initiatives.",
-        features: [
-          "Up to 5,000 submissions",
-          "10 TB stream storage",
-          "Fan & athlete content challenges",
-          "Sponsor-supported campaigns",
-          "Streaming library packages available (unlimited storage capacity)",
-          "Priority support",
-        ],
-      },
+    ],
+  },
+  included: {
+    title: `Every ${site.productName} subscription includes`,
+    items: [
+      "Secure cloud hosting",
+      "Software updates",
+      "Onboarding and training",
+      "Technical support",
+      "Anonymous judging",
+      "Results publishing",
+      "Winner showcases",
+      "Participant feedback tools",
     ],
   },
   cta: { label: "Talk to Us", href: "/contact" },
 };
 
 export const faq: FaqProps = {
-  kicker: "Pricing questions",
-  title: "The fine print, in plain English",
+  kicker: "Pricing FAQs",
+  title: "A few questions we hear all the time",
   items: [
     {
-      question: "How much does Contest Engine cost?",
-      answer:
-        "Pricing depends on your event's size and structure. Configurations range from $500–$20,000. Every suite is configured per organization — tell us what you're running and we'll scope the right setup.",
+      question: "How is pricing determined?",
+      answer: "Portals have fixed annual pricing. Suite deployments are customized based on the size, structure, and goals of your program.",
     },
     {
-      question: "What counts as a submission?",
-      answer:
-        "One uploaded entry (video or photo) from one participant in one category. Plans are sized by total submissions across your contests for the year.",
+      question: "Can we upgrade later?",
+      answer: "Absolutely. Organizations can start with a Portal and add more capacity until they're ready to move into a Suite. More participants, added accessibility, and larger file capacity can all be purchased as add-ons.",
     },
     {
-      question: "Can we upgrade mid-season?",
-      answer:
-        `Yes. If your event outgrows its plan mid-year, you can move up a tier and we'll pro-rate the difference. Nobody's contest gets stopped at the deadline because of a plan limit.`,
+      question: `Can we try ${site.productName} before committing?`,
+      answer: `Yes. We'd be happy to schedule a live demonstration and talk through your event to make sure ${site.productName} is the right fit.`,
     },
     {
-      question: "Is there a way to evaluate it first?",
-      answer:
-        `Yes. Reach out and we'll set you up to run a real contest end to end so you can take the full ${site.productName} workflow for a spin before committing.`,
+      question: "What's included with my subscription?",
+      answer: "Every subscription includes software updates, secure hosting, onboarding, technical support, and access to the features included with your Portal or Suite. White Glove coordinator and operator services are also available and can be purchased as add-ons.",
     },
     {
-      question: "Do you offer demos?",
-      answer:
-        `Absolutely. Reach out through the contact page and we'll walk you through ${site.productName} with a contest structured like yours.`,
+      question: "Do you offer nonprofit or educational pricing?",
+      answer: "Yes. Education and nonprofit organizations are at the heart of what we do. If your program has unique needs, let's talk.",
+    },
+    {
+      question: "What if our contest doesn't fit neatly into one of these options?",
+      answer: "That's exactly why we offer customized Portal and Suite deployments. Tell us about your event, and we'll recommend the best fit.",
     },
   ],
 };
 
 export const ctaBanner: CtaBannerProps = {
-  title: "Not sure which plan fits?",
-  subtitle:
-    "Tell us your event size and structure. We'll tell you honestly what you need (and what you don't).",
+  title: "Not sure which deployment is right for your organization?",
+  subtitle: `Every organization runs contests differently. Tell us what you're building, and we'll recommend the ${site.productName} that's right for your workflow.`,
   cta: { label: "Talk to Us", href: "/contact" },
 };

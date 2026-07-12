@@ -15,6 +15,8 @@ export type PricingTier = {
   priceNote?: string;
   features: string[];
   featured?: boolean;
+  /** Overrides the shared CTA for this card (e.g. a purchase link). */
+  cta?: { label: string; href: string };
 };
 
 export type PricingTiersProps = {
@@ -26,6 +28,8 @@ export type PricingTiersProps = {
   tiers: PricingTier[];
   /** Wider cards in a second row (program/org suites). */
   suites?: { title: string; tiers: PricingTier[] };
+  /** Full-width "every subscription includes" panel below the cards. */
+  included?: { title: string; items: string[] };
   cta: { label: string; href: string };
 };
 
@@ -36,6 +40,7 @@ function TierCard({
   tier: PricingTier;
   cta: { label: string; href: string };
 }) {
+  const cardCta = tier.cta ?? cta;
   return (
     <div
       className={cn(
@@ -75,7 +80,7 @@ function TierCard({
         className="mt-7"
         variant={tier.featured ? "default" : "outline"}
       >
-        <Link href={cta.href}>{cta.label}</Link>
+        <Link href={cardCta.href}>{cardCta.label}</Link>
       </Button>
     </div>
   );
@@ -88,6 +93,7 @@ export function PricingTiers({
   notice,
   tiers,
   suites,
+  included,
   cta,
 }: PricingTiersProps) {
   return (
@@ -139,7 +145,12 @@ export function PricingTiers({
               {suites.title}
             </h3>
           </Reveal>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div
+            className={cn(
+              "mt-8 grid gap-5",
+              suites.tiers.length === 2 ? "mx-auto max-w-4xl md:grid-cols-2" : "md:grid-cols-3",
+            )}
+          >
             {suites.tiers.map((tier, i) => (
               <Reveal key={tier.name} delay={i * 80} className="h-full">
                 <TierCard tier={tier} cta={cta} />
@@ -147,6 +158,24 @@ export function PricingTiers({
             ))}
           </div>
         </>
+      )}
+
+      {included && (
+        <Reveal>
+          <div className="mx-auto mt-16 max-w-4xl rounded-xl border border-border bg-card p-7">
+            <h3 className="text-center font-heading text-sm font-semibold uppercase tracking-[0.14em]">
+              {included.title}
+            </h3>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {included.items.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
+                  <PlayMark className="mt-1 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       )}
     </Section>
   );
