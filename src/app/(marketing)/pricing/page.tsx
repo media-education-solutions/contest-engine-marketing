@@ -9,7 +9,7 @@ import * as content from "@/content/pages/pricing";
 
 export const metadata = pageMetadata({
   title: "Pricing",
-  description: `${site.productName} offers flexible, configurable suite deployments for scholastic, corporate, and sports media programs. Talk to us to scope a plan for your event.`,
+  description: `${site.productName} offers Teacher and Coordinator Portals with simple annual pricing starting at $300 per year, plus custom-configured Suites for scholastic and corporate media programs. Talk to us to scope your deployment.`,
   path: "/pricing",
 });
 
@@ -22,8 +22,7 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
-    lowPrice: "500",
-    highPrice: "20000",
+    lowPrice: "300",
   },
 };
 

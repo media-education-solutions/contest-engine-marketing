@@ -9,61 +9,64 @@ import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Why we do it",
-  title: "Built by an educator who lived the spreadsheet chaos",
-  subtitle:
-    "Most contest software was designed in an office. This one was designed in a classroom, a convention hall, and a statewide summit that outgrew every tool it was running on.",
+  title: "Built from experience, not assumptions.",
+  subtitle: `${site.productName} was shaped by years of running real media competitions with real students, real judges, and real deadlines. Not by guessing how contests should work.`,
 };
 
 export const story: NarrativeProps = {
   kicker: "The origin story",
-  title: "From the Shoots Summit to a platform",
+  title: "From the founder",
   paragraphs: [
-    "For nearly two decades, our founder ran large-scale student media contests for organizations like the Student Television Network, and most recently the Shoots Summit Hawai'i, a statewide media competition organized by the Hawaii Creative Media Foundation in partnership with the Hawaii Department of Education.",
-    "After four successful years, the Shoots Summit had become too large to manage with forms feeding spreadsheets, judges coordinated across multiple email chains, and entries scattered through third-party tools. It was a lot to handle. And if the event kept growing, hiring more people wasn't going to scale.",
-    `So we built ${site.productName}: a purpose-built platform that handles the entire lifecycle of a media competition, from submission collection through judging, recognition, and results publishing.`,
-    "What started as a fix for one festival now runs statewide and regional contests across the country. Every feature in it exists because a real contest needed it.",
+    "I never planned to build software. I just got tired of wishing it existed.",
+    "For nearly 20 years, I've run some of the nation's largest student media competitions through organizations like the Student Television Network and, more recently, Shoots Summit Hawaiʻi. Every year the events grew, but the technology rarely kept up.",
+    `I wanted a platform that made running a contest feel almost invisible, leaving the focus where it belongs: on the work itself. So I built ${site.productName}.`,
+    "If the software does its job well, nobody notices it. They remember the stories, the creativity, and the experience of being part of something meaningful.",
+    `I don't believe growth and opportunity should be limited by budget, staffing, or legacy systems. If you have a community, a mission, and people creating great work, you should have the tools to recognize it. ${site.productName} is my contribution toward making that possible.`,
+    `Today, organizations across the country use ${site.productName} to run media competitions of every size. Every feature was earned by solving a real problem for a real contest.`,
   ],
   pullQuote: "People want their work to matter.",
+  pullQuoteIndex: 2,
+  signature: { name: "Jeb Brunt", role: `Founder, ${site.companyShortName}` },
 };
 
 export const valueProps: FeatureGridProps = {
   kicker: "What you get",
-  title: "Five reasons organizations make the switch",
+  title: `Why organizations choose ${site.productName}`,
   tone: "muted",
   features: [
     {
       icon: Layers,
-      title: "Everything in one place",
-      body: "Collection, evaluation, recognition, and publishing in a single platform, instead of forms, spreadsheets, cloud drives, email chains, and broken links stitched together.",
+      title: "One platform. One workflow.",
+      body: "From submissions and judging to feedback, results, and winner showcases, everything happens in one place. No patchwork of spreadsheets, cloud drives, forms, and email threads.",
     },
     {
       icon: Sparkles,
       title: "Fairness by design",
-      body: "Anonymous entries, guided scoring tiers, and admin review before anything goes public. The process is defensible if anyone asks how winners were chosen.",
+      body: "Anonymous entries, guided scoring, and built-in oversight create a fair, consistent process you can confidently explain to participants, educators, parents, and stakeholders.",
     },
     {
       icon: Trophy,
       title: "Recognition that motivates",
-      body: "Winner showcases, named achievement tiers, and written feedback for every participant. Recognition drives participation, and participation builds programs.",
+      body: "Every media contest is an opportunity to celebrate great work. Winner showcases, written feedback, achievement awards, and participant recognition help build stronger programs year after year.",
     },
     {
       icon: Library,
       title: "Own your assets",
-      body: "Every contest builds a rights-cleared library of your participants' best work, yours to download, archive, and showcase long after the awards night ends.",
+      body: "Build a library of rights-cleared video, photo, and creative work that belongs to your organization, ready to download, archive, and showcase long after the event is over.",
     },
     {
       icon: Users,
       title: "Built for school reality",
-      body: "No student accounts or emails. Resumable uploads that survive school Wi-Fi. Judges who can work evenings from home. The details only an educator would think of.",
+      body: "No student accounts. No unnecessary barriers. Reliable uploads on school Wi-Fi. Remote judging. Thoughtful details shaped by years of running real media competitions.",
     },
   ],
 };
 
 export const psychology: FeatureGridProps = {
   kicker: "The psychology",
-  title: "Contests turn passive groups into creators",
+  title: "Why contests work",
   intro:
-    "Structured competition activates three core human drives, and a well-run contest channels all of them into better work.",
+    "The best contests do more than recognize great work. They give people a reason to create, improve, and come back ready to do it again.",
   features: [
     {
       icon: Target,
@@ -73,12 +76,12 @@ export const psychology: FeatureGridProps = {
     {
       icon: Compass,
       title: "Autonomy",
-      body: "Participants get a prompt and a deadline, but the story is theirs to tell. Freedom to create on their own terms is what makes the work worth judging.",
+      body: "Participants receive the prompt and the deadline, but the story is still theirs to tell. That creative freedom is what makes the work authentic.",
     },
     {
       icon: Heart,
       title: "Relatedness",
-      body: "Being part of something bigger (a summit, a showcase, a community of creators) builds pride, loyalty, and the desire to contribute again next year.",
+      body: "Being part of something bigger and meaningful builds pride, loyalty, and the desire to contribute again next time.",
     },
   ],
 };
@@ -95,36 +98,34 @@ export const faq: FaqProps = {
   title: "Frequently asked questions",
   items: [
     {
-      question: `What makes ${site.productName} different from generic contest software?`,
-      answer:
-        "It was purpose-built for student media competitions by a 29-year media educator. Anonymous judging, achievement tiers, code-based entry, and written feedback aren't add-ons, they're the core design.",
+      question: `What makes ${site.productName} different?`,
+      answer: `${site.productName} wasn't adapted from generic contest software. It was built from the ground up by a media educator who spent nearly 20 years running some of the nation's largest media competitions. Every feature exists because a real contest needed it.`,
     },
     {
-      question: "Do participants need accounts or email addresses?",
-      answer:
-        "No. Participants access a contest using a link and a code provided by their group leader. The platform does not require any personal accounts or private information to participate, which meets privacy requirements for minors.",
+      question: `Can ${site.productName} support the way we already run our event?`,
+      answer: `Yes. Create divisions, categories, deadlines, judging panels, award levels, and custom rules that fit your event, not the other way around. Whether you're running a classroom challenge or a national convention, ${site.productName} scales with you.`,
     },
     {
       question: "How does judging stay fair?",
-      answer:
-        "Judges see anonymized entries labeled A, B, C, never participant names. Scoring uses a guided 1–10 scale with named tiers so different judges score consistently, and administrators review everything before results are published.",
+      answer: "Judges evaluate anonymized entries, not participant names. Guided scoring, written feedback, and administrator review create a consistent, transparent judging process you can stand behind.",
     },
     {
-      question: "Can it handle our event's structure?",
-      answer:
-        "Contests support divisions (like elementary, middle, high school, or expert and beginner) and categories (like animation, documentary, or photography) in any combination, each with its own deadlines, rules, and judges.",
+      question: "Do participants need accounts or email addresses?",
+      answer: "No. Participants submit using a contest link and access code provided by your organization. No personal accounts, passwords, or student email addresses are required.",
     },
     {
-      question: "What does it cost?",
-      answer:
-        "Pricing is configured to your event's size and structure, with flexible suite deployments. See the pricing page, or talk to us to scope a plan.",
+      question: "Who owns the submitted media?",
+      answer: `Your organization does. ${site.productName} gives you the tools to collect, judge, recognize, and manage submissions, while you maintain control over your media and how it's used.`,
+    },
+    {
+      question: "How is pricing determined?",
+      answer: "Every organization is different. Pricing is based on the size and structure of your event, with flexible suite configurations for schools, nonprofits, associations, brands, and media organizations. Visit our pricing page or contact us for a customized quote.",
     },
   ],
 };
 
 export const ctaBanner: CtaBannerProps = {
-  title: "Your event deserves better than a spreadsheet",
-  subtitle: "Talk to us. We've run contests at every scale and we'll be straight about whether this fits yours.",
+  title: "If you run media contests,\nyou deserve better than a spreadsheet.",
+  subtitle: "Tell us what you're building. We'll show you what's possible.",
   cta: { label: "Talk to Us", href: "/contact" },
-  secondaryCta: { label: "See pricing", href: "/pricing" },
 };

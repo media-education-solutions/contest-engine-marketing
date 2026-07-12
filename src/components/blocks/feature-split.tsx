@@ -33,7 +33,7 @@ export function FeatureSplit({
         <Reveal className={cn(reverse && "lg:order-2")}>
           <div>
             {kicker && <Kicker>{kicker}</Kicker>}
-            <h2 className="mt-4 text-3xl text-balance sm:text-4xl">{title}</h2>
+            <h2 className="mt-4 text-3xl text-balance whitespace-pre-line sm:text-4xl">{title}</h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
               {body}
             </p>

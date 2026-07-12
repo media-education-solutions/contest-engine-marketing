@@ -24,7 +24,7 @@ export function CtaBanner({ title, subtitle, cta, secondaryCta }: CtaBannerProps
 
       <Container className="flex flex-col items-center gap-6 text-center">
         <Reveal>
-          <h2 className="max-w-2xl text-3xl text-balance text-background sm:text-4xl">
+          <h2 className="max-w-2xl text-3xl text-balance whitespace-pre-line text-background sm:text-4xl">
             {title}
           </h2>
         </Reveal>

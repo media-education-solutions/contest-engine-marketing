@@ -1,35 +1,31 @@
 import type { FeatureSplitProps } from "@/components/blocks/feature-split";
 import type { CtaBannerProps } from "@/components/blocks/cta-banner";
+import { site } from "@/content/site";
 
 export const intro = {
   kicker: "How it works",
-  title: "One workflow.\nFrom submission, to recognition.",
-  subtitle: `We help contests move through four stages: create, collect, judge, celebrate. Here's how it works for your whole organization.`,
+  title: "One platform.\nFour simple steps.",
+  subtitle: `Create your contest, collect entries, manage judging, and recognize great work. ${site.productName} keeps everything moving from start to finish.`,
 };
 
 /** Media slots are wired up in the page component (MediaPlaceholder until Phase 5). */
 export const roles: Array<Omit<FeatureSplitProps, "media">> = [
   {
     id: "organizers",
-    kicker: "For organizers",
+    kicker: "For organizers and coordinators",
     title: "Build your contest in an afternoon",
-    body: "Set up divisions and categories, write the rules once, and control every deadline from a single dashboard. Distribution is as easy as sharing a code or QR poster.",
-    bullets: [
-      "Divisions and categories for any contest structure: video, photo, or both",
-      "Access codes and QR distribution: no rosters to upload, no accounts to provision",
-      "Real-time monitoring of who's submitted and which categories need attention",
-      "You approve everything before results ever go public",
-    ],
+    body: "Create categories, organize divisions, control deadlines, and give participants instant access using a URL link or QR code.",
   },
   {
     id: "students",
     kicker: "For media events",
-    title: "Two codes and they're in",
-    body: "Students enter with a link and a participant code from their teacher. No accounts to create, no emails required, nothing to remember after festival season. Uploads are resumable, so school Wi-Fi can't eat anyone's entry.",
+    title: "One code and they're in",
+    body: "Students simply enter a participant code or use the QR code provided. No accounts to create, no emails required, and no barriers to submitting an entry.",
     bullets: [
-      "No student accounts or personal information required to participate",
-      "Video and photo uploads from any device, with progress that survives drops",
-      "Students track their submission status and see feedback when results publish",
+      "No participant accounts or personal information required",
+      "Participants track their submission status and see feedback when results publish",
+      "Uploads may come from any device, and progress is saved if the connection drops",
+      "Built for real-world uploads, even when the Wi-Fi is not",
     ],
     reverse: true,
     tone: "muted",
@@ -38,24 +34,25 @@ export const roles: Array<Omit<FeatureSplitProps, "media">> = [
     id: "judges",
     kicker: "For judges",
     title: "Fair, focused judging, flexible remote access",
-    body: "Judges see anonymized entries: Entry A, B, C, never participant names. A guided 1–10 scale with named achievement tiers keeps scoring consistent across judges, and written feedback flows back to every participant.",
+    body: "Judges evaluate anonymized entries, not participant names. A guided 1–10 scoring rubric, written feedback, and a simple drag-and-drop podium for selecting winners make judging fair, consistent, and easy.",
     bullets: [
-      "Anonymous entries with letter labels, so bias never gets a foothold",
-      "Guided 1–10 scale, from Developing Skills to Master Creator",
+      "Anonymous entry capabilities, so judge bias is not a problem",
+      "Standard performance rubric using a 1–10 scale, from Developing Skills to Master Creator",
       "Written feedback fields, auto-saved as judges progress",
       "Rank the top entries, drag-n-drop them to the winner's podium",
-      "Automatic email notifications to judges when entries are ready",
+      "Automatic email notifications to judges when entries are ready, and to organizers when judging is completed",
     ],
   },
   {
     id: "results",
     kicker: "Results & recognition",
-    title: "Awards night, minus the all-nighter",
+    title: "Awards night,\nminus the all-nighter",
     body: "When judging closes, you review, then publish. Now you can plan award ceremonies, share winner showcases, push feedback to students, and the originals are yours to download.",
     bullets: [
-      "Winner galleries shareable by URL or embedded on your organization's site",
-      "Every participant sees their judge feedback, not just the winners",
-      "Bulk-download original files into your program's archive",
+      "Winner galleries may be showcased on a password-protected webpage with downloading and sharing tools",
+      "Winning entries may be downloaded for presentation, shared with a URL link, or posted with an embed code",
+      "Entire categories may be downloaded in bulk for broadcast and social media deployment, or for your library archive",
+      "All participants see where they landed on the rubric, and may receive their own private judging feedback",
     ],
     reverse: true,
     tone: "muted",

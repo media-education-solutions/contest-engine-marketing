@@ -14,8 +14,8 @@ import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Who we help",
-  title: "Made for student media. Ready for every kind of contest",
-  subtitle: `${site.productName} was born in scholastic media and runs deepest there. But the engine underneath (collect, evaluate, activate) fits any organization that turns participation into creative work.`,
+  title: "Built for student media. Ready for much more.",
+  subtitle: `${site.productName} was built for scholastic media competitions, but any organization that collects creative work, evaluates submissions, and recognizes excellence can make it their own.`,
 };
 
 export const leadMedia = {
@@ -28,58 +28,56 @@ export const lead: Omit<FeatureSplitProps, "media"> = {
   id: "scholastic",
   kicker: "Our home turf",
   title: "Scholastic media programs & student media events",
-  body: "Designed for journalism, broadcasting, filmmaking, photography, and multimedia storytelling competitions, at any size, from single classroom challenges to large-scale nationwide media contest events.",
+  body: `${site.productName} was built for journalism, broadcasting, filmmaking, photography, and multimedia competitions. Whether you're running a single classroom challenge or a national convention with thousands of entries, the workflow stays simple.`,
   bullets: [
-    "Custom divisions that can be based on age, skill, or grade level",
-    "Code-based entry that respects participant privacy: no accounts, no emails required",
-    "Judges can be drawn from industry professionals, working remotely",
-    "Winner showcasing tools optimized for the awards ceremony and ready for the school website",
+    "Flexible divisions based on grade level, age, experience, or any criteria you choose",
+    "Privacy-friendly submissions with simple access codes: no participant accounts or email addresses required",
+    "Anonymous judging by educators or industry professionals from anywhere",
+    "Awards-ready results with winner showcases built for ceremonies, websites, and social media",
   ],
 };
 
 export const segments: FeatureGridProps = {
   kicker: "Beyond the classroom",
-  title: "One engine, many kinds of contests",
-  intro:
-    "These deployments share the same platform with terminology and branding tuned to each world.",
+  title: "Built for more than student media.",
+  intro: `${site.productName} was built in scholastic media, but the same platform powers creative competitions, awards programs, and content challenges across education, nonprofits, sports, and business.`,
   tone: "muted",
   features: [
     {
       icon: Radio,
       title: "Community media organizations",
-      body: "Public-access stations and youth media nonprofits running recurring video competitions, like statewide youth exchanges and community storytelling programs.",
+      body: "Run recurring video competitions for your public-access community station. Youth media programs and community storytelling initiatives can collect user-generated content using one platform for submissions, evaluation, recognition, and showcase.",
     },
     {
       icon: Clapperboard,
       title: "Film festivals",
-      body: "Independent and student film festivals that need submission collection, screening-ready organization, and jury workflows without enterprise complexity.",
+      body: "Use the platform branding tools for a custom participant portal. Collect and own your festival entries, rights-cleared. Organize public event screenings. Manage your judges. Publish results without the cost and complexity of enterprise festival software.",
     },
     {
       icon: GraduationCap,
-      title: "Universities & colleges",
-      body: "Academic departments, student orgs, and campus media programs running creative showcases, scholarship competitions, and recognition programs.",
+      title: "Colleges & universities",
+      body: "Support student media within the school or local community. Support academic departments, campus organizations, and scholarship programs with professional competition tools. Provide a fun way to activate the creators on campus.",
     },
     {
       icon: Trophy,
-      title: "Athletics & sports content",
-      body: "Athletic departments and teams collecting fan- and athlete-created content: sponsored challenges, NIL-friendly creator programs, and community engagement campaigns.",
+      title: "Athletics & sports organizations",
+      body: "Collect fan-generated and athlete-created content for sponsored challenges, NIL initiatives, season campaigns, and community engagement.",
     },
     {
       icon: Megaphone,
       title: "Brands & creator programs",
-      body: "Ambassador programs and marketing teams turning their communities into content teams through structured, rights-cleared creative challenges.",
+      body: "Turn your audience into storytellers with branded content challenges, ambassador programs, and user-generated media campaigns.",
     },
     {
       icon: School,
-      title: "Scholarship nonprofits",
-      body: "Foundations and associations running media-based scholarship and recognition programs with transparent, defensible evaluation.",
+      title: "Foundations & associations",
+      body: "Run scholarship competitions, recognition programs, and media awards with transparent judging, meaningful feedback, and defensible results.",
     },
   ],
 };
 
 export const ctaBanner: CtaBannerProps = {
-  title: "Don't see your exact contest? Ask anyway.",
-  subtitle:
-    "If people create video, photo, or media for it and someone has to judge it, chances are the engine fits.",
+  title: "Don't see your exact contest?\nAsk anyway.",
+  subtitle: `If you're collecting media, and someone needs to review it, ${site.productName} can probably do the job.`,
   cta: { label: "Talk to Us", href: "/contact" },
 };
