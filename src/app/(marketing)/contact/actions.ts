@@ -1,7 +1,12 @@
 "use server";
 
 import { z } from "zod";
-import { site } from "@/content/site";
+import {
+  saveInquiry,
+  markInquiryNotified,
+  notifyInquiry,
+  type ContactInquiry,
+} from "@/lib/contact-delivery";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Please tell us your name.").max(200),
@@ -50,49 +55,45 @@ async function verifyTurnstile(token: string | null): Promise<boolean> {
   return data.success;
 }
 
+/**
+ * Store the inquiry and notify the team. These are independent paths run
+ * concurrently: the submission succeeds if EITHER lands, so a Google outage
+ * cannot lose a lead and a Neon outage cannot suppress the notification.
+ */
 async function deliver(input: z.infer<typeof contactSchema>): Promise<boolean> {
-  const apiKey = process.env.BREVO_API_KEY;
-  const inbox = process.env.CONTACT_INBOX;
+  const inquiry: ContactInquiry = {
+    name: input.name,
+    email: input.email,
+    organization: input.organization,
+    role: input.role,
+    message: input.message,
+  };
 
-  if (!apiKey || !inbox) {
+  if (!process.env.NEON_DB_URL && !process.env.CONTACT_SCRIPT_URL) {
     if (process.env.NODE_ENV !== "production") {
-      console.info("[contact] email not configured — inquiry:", input);
+      console.info("[contact] delivery not configured — inquiry:", inquiry);
       return true;
     }
-    console.error("[contact] BREVO_API_KEY / CONTACT_INBOX missing in production");
+    console.error(
+      "[contact] NEON_DB_URL and CONTACT_SCRIPT_URL both missing in production",
+    );
     return false;
   }
 
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: {
-      "api-key": apiKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      sender: {
-        name: `${site.productName} Website`,
-        email: process.env.CONTACT_FROM_EMAIL ?? inbox,
-      },
-      to: [{ email: inbox }],
-      replyTo: { email: input.email, name: input.name },
-      subject: `New inquiry from ${input.name}${input.organization ? ` (${input.organization})` : ""}`,
-      textContent: [
-        `Name: ${input.name}`,
-        `Email: ${input.email}`,
-        `Organization: ${input.organization || "—"}`,
-        `Role: ${input.role}`,
-        "",
-        input.message,
-      ].join("\n"),
-    }),
-  });
+  const [id, notified] = await Promise.all([
+    saveInquiry(inquiry),
+    notifyInquiry(inquiry),
+  ]);
 
-  if (!res.ok) {
-    console.error("[contact] Brevo error", res.status, await res.text());
-    return false;
+  if (id !== null && notified) await markInquiryNotified(id);
+  if (id !== null && !notified) {
+    console.error("[contact] stored but not notified — row", id);
   }
-  return true;
+  if (id === null && notified) {
+    console.error("[contact] notified but NOT stored — Sheet is the only copy");
+  }
+
+  return id !== null || notified;
 }
 
 export async function submitContact(
