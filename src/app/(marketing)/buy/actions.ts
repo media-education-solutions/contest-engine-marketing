@@ -8,16 +8,25 @@ import { verifyTurnstile } from "@/lib/turnstile";
 import { createPendingOrder } from "@/lib/purchase-delivery";
 import { site } from "@/content/site";
 import { form as copy } from "@/content/pages/buy";
+import { US_PHONE_PATTERN } from "@/lib/utils";
+
+/** Optional field, but if present must be a complete 10-digit US number. */
+const optionalPhone = z
+  .string()
+  .trim()
+  .optional()
+  .default("")
+  .refine((v) => v === "" || US_PHONE_PATTERN.test(v), copy.errors.invalidPhone);
 
 const buySchema = z.object({
   plan: z.string().min(1),
   addOns: z.array(z.string()),
   teacherName: z.string().trim().min(1, "Please tell us your name.").max(200),
   email: z.email("Please enter a valid email address."),
-  phone: z.string().trim().max(40).optional().default(""),
+  phone: optionalPhone,
   schoolName: z.string().trim().min(1, "Please tell us your school or organization.").max(300),
   schoolAddress: z.string().trim().max(500).optional().default(""),
-  schoolPhone: z.string().trim().max(40).optional().default(""),
+  schoolPhone: optionalPhone,
   /** Honeypot — humans never fill this. */
   website: z.literal("").optional(),
 });
@@ -37,7 +46,9 @@ export type BuyFormState = {
   status: "idle" | "redirect" | "error";
   message?: string;
   url?: string;
-  fieldErrors?: Partial<Record<"teacherName" | "email" | "schoolName", string>>;
+  fieldErrors?: Partial<
+    Record<"teacherName" | "email" | "schoolName" | "phone" | "schoolPhone", string>
+  >;
   /** Echoed back on error so the form re-renders with input intact. */
   values?: BuyFormValues;
 };
@@ -80,6 +91,8 @@ export async function submitBuy(
         teacherName: flat.teacherName?.[0],
         email: flat.email?.[0],
         schoolName: flat.schoolName?.[0],
+        phone: flat.phone?.[0],
+        schoolPhone: flat.schoolPhone?.[0],
       },
       values,
     };

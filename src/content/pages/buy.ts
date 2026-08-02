@@ -16,8 +16,8 @@ export const form = {
     email: "Email",
     phone: "Phone",
     schoolName: "School or organization",
-    schoolAddress: "School address",
-    schoolPhone: "School phone",
+    schoolAddress: "School or organization address",
+    schoolPhone: "School or organization phone",
   },
   submitLabel: "Continue to payment",
   submitPendingLabel: "Redirecting to checkout…",
@@ -31,6 +31,7 @@ export const form = {
     notHuman: "We couldn't verify you're human. Please try again.",
     unavailable: "Purchasing is temporarily unavailable — please contact us instead.",
     invalidSelection: "That selection isn't valid. Please refresh the page and try again.",
+    invalidPhone: "Enter a valid 10-digit phone number.",
   },
 };
 

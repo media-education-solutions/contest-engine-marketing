@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { portals, addOns as addOnCatalog, formatUsd } from "@/content/commerce";
 import { form as copy } from "@/content/pages/buy";
-import { cn } from "@/lib/utils";
+import { cn, formatPhoneNumber } from "@/lib/utils";
 import { submitBuy, type BuyFormState } from "./actions";
 
 const initialState: BuyFormState = { status: "idle" };
@@ -38,6 +38,8 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
   const [state, formAction, pending] = useActionState(submitBuy, initialState);
   const [plan, setPlan] = useState(state.values?.plan || defaultPlan);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>(state.values?.addOns ?? []);
+  const [phone, setPhone] = useState(state.values?.phone ?? "");
+  const [schoolPhone, setSchoolPhone] = useState(state.values?.schoolPhone ?? "");
 
   const availableAddOns = useMemo(
     () => addOnCatalog.filter((a) => (a.appliesTo as readonly string[]).includes(plan)),
@@ -175,9 +177,14 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
             id="phone"
             name="phone"
             type="tel"
+            inputMode="numeric"
             autoComplete="tel"
-            defaultValue={state.values?.phone}
+            placeholder="(303) 555-1234"
+            maxLength={14}
+            value={phone}
+            onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
           />
+          <FieldError message={state.fieldErrors?.phone} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="schoolName">
@@ -210,8 +217,13 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
             id="schoolPhone"
             name="schoolPhone"
             type="tel"
-            defaultValue={state.values?.schoolPhone}
+            inputMode="numeric"
+            placeholder="(303) 555-1234"
+            maxLength={14}
+            value={schoolPhone}
+            onChange={(e) => setSchoolPhone(formatPhoneNumber(e.target.value))}
           />
+          <FieldError message={state.fieldErrors?.schoolPhone} />
         </div>
       </div>
 
