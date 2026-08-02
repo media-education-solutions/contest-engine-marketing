@@ -8,6 +8,7 @@ import {
   type ContactInquiry,
 } from "@/lib/contact-delivery";
 import { verifyTurnstile } from "@/lib/turnstile";
+import { form as copy } from "@/content/pages/contact";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Please tell us your name.").max(200),
@@ -92,6 +93,13 @@ export async function submitContact(
     message: String(formData.get("message") ?? ""),
   };
 
+  // Honeypot: humans never see this field. Report success and drop it on the
+  // floor — an error response just tells the bot which field to stop filling.
+  if (String(formData.get("website") ?? "").trim() !== "") {
+    console.warn("[contact] honeypot tripped — submission dropped");
+    return { status: "success", message: copy.success };
+  }
+
   const parsed = contactSchema.safeParse({
     ...values,
     website: formData.get("website"),
@@ -101,7 +109,7 @@ export async function submitContact(
     const flat = z.flattenError(parsed.error).fieldErrors;
     return {
       status: "error",
-      message: "Please fix the highlighted fields.",
+      message: copy.errors.fields,
       fieldErrors: {
         name: flat.name?.[0],
         email: flat.email?.[0],
@@ -117,7 +125,7 @@ export async function submitContact(
   if (!human) {
     return {
       status: "error",
-      message: "We couldn't verify you're human. Please try again.",
+      message: copy.errors.notHuman,
       values,
     };
   }
@@ -126,14 +134,13 @@ export async function submitContact(
   if (!delivered) {
     return {
       status: "error",
-      message:
-        "Something went wrong sending your message. Please try again in a moment.",
+      message: copy.errors.delivery,
       values,
     };
   }
 
   return {
     status: "success",
-    message: "Thanks! We read every message and we'll get back to you soon.",
+    message: copy.success,
   };
 }

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { TurnstileWidget } from "@/components/ui/turnstile-widget";
 import {
   Select,
   SelectContent,
@@ -232,6 +233,8 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
+
+      <TurnstileWidget action="buy" resetOn={state} />
 
       {state.status === "error" && !state.fieldErrors && (
         <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">

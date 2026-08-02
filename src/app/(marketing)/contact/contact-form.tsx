@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { TurnstileWidget } from "@/components/ui/turnstile-widget";
 import {
   Select,
   SelectContent,
@@ -128,6 +129,8 @@ export function ContactForm() {
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
+
+      <TurnstileWidget action="contact" resetOn={state} />
 
       {state.status === "error" && !state.fieldErrors && (
         <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">
