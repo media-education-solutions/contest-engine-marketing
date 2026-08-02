@@ -15,6 +15,7 @@ import { ProcessSteps } from "@/components/blocks/process-steps";
 import { LogoCloud } from "@/components/blocks/logo-cloud";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { Faq } from "@/components/blocks/faq";
+import { TagList } from "@/components/blocks/tag-list";
 import { VideoEmbed } from "@/components/blocks/video-embed";
 import { ScreenshotShowcase } from "@/components/blocks/screenshot-showcase";
 import { site } from "@/content/site";
@@ -151,6 +152,23 @@ export default function BlocksPlayground() {
                 "Judges see anonymized entries labeled A, B, C — never participant names. Scores use a guided 1–10 scale with named tiers, and admins review everything before results go public.",
             },
           ]}
+        />
+
+        <BlockLabel>TagList</BlockLabel>
+        <TagList
+          kicker="Sample section"
+          title="Wrapping pill list"
+          intro="For sections that are a flat set of short phrases, not cards."
+          items={[
+            "Home",
+            "Office",
+            "Classroom",
+            "Laptop",
+            "Tablet",
+            "Desktop computer",
+            "Media Degree Seeking College Students & Grad Assistants",
+          ]}
+          note="A closing reassurance line renders here when supplied."
         />
 
         <BlockLabel>

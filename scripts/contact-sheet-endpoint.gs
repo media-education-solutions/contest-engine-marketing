@@ -1,5 +1,6 @@
 /**
- * Contest Engine — contact form + purchase notification endpoint (MED-31, MED-32).
+ * Contest Engine — contact form + purchase + judge notification endpoint
+ * (MED-31, MED-32, MED-35).
  *
  * Canonical copy. NOT built or imported by the site: paste into the Apps Script
  * project bound to the "Contest Engine Marketing" spreadsheet, then
@@ -24,6 +25,9 @@ const SHEET_NAME = 'Inquiries';
 // falling back to the Inquiries tab would silently merge two different shapes.
 const PURCHASE_SHEET_NAME = 'Purchases';
 
+// Must exist as its own tab — no fallback, for the same reason as PURCHASE_SHEET_NAME.
+const JUDGE_SHEET_NAME = 'Judges';
+
 function doPost(e) {
   try {
     const body = JSON.parse(e.postData.contents);
@@ -34,7 +38,9 @@ function doPost(e) {
     }
 
     const kind = body.kind || 'contact';
-    return kind === 'purchase' ? handlePurchase(body) : handleContact(body);
+    if (kind === 'purchase') return handlePurchase(body);
+    if (kind === 'judge') return handleJudge(body);
+    return handleContact(body);
   } catch (err) {
     return json({ ok: false, error: String(err) });
   }
@@ -114,6 +120,37 @@ function handlePurchase(body) {
       'School phone: ' + (body.schoolPhone || '—'),
       '',
       'Stripe session: ' + body.stripeSessionId,
+    ].join('\n'),
+  });
+
+  return json({ ok: true, mailed: mailed });
+}
+
+function handleJudge(body) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(JUDGE_SHEET_NAME);
+  if (!sheet) {
+    return json({ ok: false, error: 'missing "Judges" tab' });
+  }
+
+  // Append first: a mail failure must never cost us the Sheet row.
+  sheet.appendRow([
+    new Date(), body.judgeKind || '', body.name || '', body.email || '',
+    body.phone || '', body.jobTitle || '', body.note || '',
+  ]);
+
+  const mailed = sendMail({
+    to: NOTIFY_EMAILS.join(','),
+    replyTo: body.email,
+    subject: 'New judge interest — ' + (body.judgeKind || '') + ': ' + body.name,
+    body: [
+      'Type: ' + body.judgeKind,
+      'Name: ' + body.name,
+      'Email: ' + body.email,
+      'Phone: ' + (body.phone || '—'),
+      'Job title: ' + (body.jobTitle || '—'),
+      '',
+      body.note,
     ].join('\n'),
   });
 

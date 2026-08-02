@@ -10,7 +10,8 @@
         "http://localhost:3400/who-we-help",
         "http://localhost:3400/pricing",
         "http://localhost:3400/about",
-        "http://localhost:3400/contact"
+        "http://localhost:3400/contact",
+        "http://localhost:3400/judges"
       ],
       "numberOfRuns": 1,
       "settings": {

@@ -22,6 +22,7 @@ const PAGES = [
   { name: "buy", path: "/buy" },
   { name: "about", path: "/about" },
   { name: "contact", path: "/contact" },
+  { name: "judges", path: "/judges" },
   { name: "blocks", path: "/dev/blocks" },
 ] as const;
 

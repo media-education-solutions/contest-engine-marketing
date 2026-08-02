@@ -14,6 +14,9 @@ const routes: Array<{ path: string; priority: number }> = [
   { path: "/buy", priority: 0.7 },
   { path: "/about", priority: 0.6 },
   { path: "/contact", priority: 0.8 },
+  // Nothing in the nav or footer links to /judges (MED-35) — this line is the
+  // only crawl path to it. Deleting it doesn't demote the page, it hides it.
+  { path: "/judges", priority: 0.7 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

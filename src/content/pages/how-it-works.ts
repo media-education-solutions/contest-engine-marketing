@@ -37,7 +37,7 @@ export const roles: Array<Omit<FeatureSplitProps, "media">> = [
     body: "Judges evaluate anonymized entries, not participant names. A guided 1–10 scoring rubric, written feedback, and a simple drag-and-drop podium for selecting winners make judging fair, consistent, and easy.",
     bullets: [
       "Anonymous entry capabilities, so judge bias is not a problem",
-      "Standard performance rubric using a 1–10 scale, from Developing Skills to Master Creator",
+      "Universal Performance Rubric using a 1–10 scale, from Developing Skills to Master Creator",
       "Written feedback fields, auto-saved as judges progress",
       "Rank the top entries, drag-n-drop them to the winner's podium",
       "Automatic email notifications to judges when entries are ready, and to organizers when judging is completed",

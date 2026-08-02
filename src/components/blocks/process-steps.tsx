@@ -1,6 +1,7 @@
 import { Kicker, PlayMark } from "@/components/ui/play-mark";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/layout/section";
+import { cn } from "@/lib/utils";
 
 export type ProcessStep = {
   name: string;
@@ -13,13 +14,19 @@ export type ProcessStepsProps = {
   title: string;
   intro?: string;
   steps: ProcessStep[];
+  /** 4 lays out 2×2 at sm and a single row at lg. Default 3 (unchanged). */
+  columns?: 3 | 4;
 };
 
 /**
  * Numbered horizontal flow (vertical on mobile) — built for
  * "Collect → Evaluate → Activate" but content-agnostic.
  */
-export function ProcessSteps({ kicker, title, intro, steps }: ProcessStepsProps) {
+export function ProcessSteps({ kicker, title, intro, steps, columns = 3 }: ProcessStepsProps) {
+  const gridClass = columns === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
+  // 4-up wraps to 2×2 at sm, where a connector would point at the next ROW — lg only.
+  const connectorClass = columns === 4 ? "hidden lg:block" : "hidden sm:block";
+
   return (
     <Section>
       <div className="mx-auto max-w-2xl text-center">
@@ -40,7 +47,7 @@ export function ProcessSteps({ kicker, title, intro, steps }: ProcessStepsProps)
         )}
       </div>
 
-      <ol className="mt-14 grid gap-10 sm:grid-cols-3 sm:gap-6">
+      <ol className={cn("mt-14 grid gap-10 sm:gap-6", gridClass)}>
         {steps.map((step, i) => (
           <li key={step.name} className="relative">
             <Reveal
@@ -51,7 +58,10 @@ export function ProcessSteps({ kicker, title, intro, steps }: ProcessStepsProps)
               {i < steps.length - 1 && (
                 <div
                   aria-hidden
-                  className="absolute top-7 left-[calc(50%+3rem)] hidden h-px w-[calc(100%-6rem)] bg-border sm:block"
+                  className={cn(
+                    "absolute top-7 left-[calc(50%+3rem)] h-px w-[calc(100%-6rem)] bg-border",
+                    connectorClass,
+                  )}
                 >
                   <PlayMark className="absolute -top-[5px] -right-1 size-2.5 fill-border" />
                 </div>

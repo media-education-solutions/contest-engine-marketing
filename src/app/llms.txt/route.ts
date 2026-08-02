@@ -40,6 +40,7 @@ ${clients}
 - [How it works](${site.url}/how-it-works): the full workflow for organizers, participants, and judges
 - [Buy](${site.url}/buy): purchase a Teacher or Coordinator Portal and add-ons online
 - [Contact](${site.url}/contact): talk to the team about running your contest
+- [Become a judge](${site.url}/judges): join the judge network — how judging works, and the volunteer or freelance interest forms
 
 ## Company
 
