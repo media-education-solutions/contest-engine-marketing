@@ -179,6 +179,24 @@ export const doc: LegalDocProps = {
         },
       ],
     },
+    // TODO(MED-32): refund policy — Brunt to supply. Add a REFUNDS clause here.
+    {
+      heading: "PURCHASES AND BILLING",
+      body: [
+        {
+          kind: "p",
+          text: `Portal subscriptions purchased through ${site.productName} run for one year from activation. Add-ons purchased alongside a Portal are one-time purchases tied to that Portal's term.`,
+        },
+        {
+          kind: "p",
+          text: "Payment is processed by a third-party payment processor. We never receive or store your card numbers.",
+        },
+        {
+          kind: "p",
+          text: "Purchase orders and invoicing are available on request for organizations that cannot pay by card.",
+        },
+      ],
+    },
     {
       heading: "TERMINATION",
       body: [

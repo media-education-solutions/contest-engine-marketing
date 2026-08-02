@@ -183,7 +183,11 @@ export const doc: LegalDocProps = {
       body: [
         {
           kind: "p",
-          text: `${site.productName} may utilize third-party providers for hosting, storage, authentication, email delivery, analytics, video processing, and related services.`,
+          text: `${site.productName} may utilize third-party providers for hosting, storage, authentication, email delivery, analytics, video processing, payment processing, and related services.`,
+        },
+        {
+          kind: "p",
+          text: "Payment card details are submitted directly to our payment processor and are never stored by us.",
         },
       ],
     },

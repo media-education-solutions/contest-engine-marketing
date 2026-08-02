@@ -30,6 +30,12 @@ export type PricingTiersProps = {
   suites?: { title: string; tiers: PricingTier[] };
   /** Full-width "every subscription includes" panel below the cards. */
   included?: { title: string; items: string[] };
+  /** Priced extras below the tier cards. */
+  addOns?: {
+    title: string;
+    intro?: string;
+    items: { name: string; description: string; price: string }[];
+  };
   cta: { label: string; href: string };
 };
 
@@ -94,6 +100,7 @@ export function PricingTiers({
   tiers,
   suites,
   included,
+  addOns,
   cta,
 }: PricingTiersProps) {
   return (
@@ -158,6 +165,39 @@ export function PricingTiers({
             ))}
           </div>
         </>
+      )}
+
+      {addOns && (
+        <Reveal>
+          <div className="mx-auto mt-16 max-w-4xl">
+            <h3 className="text-center font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              {addOns.title}
+            </h3>
+            {addOns.intro && (
+              <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+                {addOns.intro}
+              </p>
+            )}
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {addOns.items.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-xl border border-border bg-card p-5"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-heading text-sm font-semibold">{item.name}</p>
+                    <span className="shrink-0 whitespace-nowrap font-heading text-sm font-semibold text-brand">
+                      {item.price}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       )}
 
       {included && (

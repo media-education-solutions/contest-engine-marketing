@@ -5,13 +5,17 @@ import { PricingTiers } from "@/components/blocks/pricing-tiers";
 import { Faq } from "@/components/blocks/faq";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { site } from "@/content/site";
+import { portals, addOns, formatUsd } from "@/content/commerce";
 import * as content from "@/content/pages/pricing";
 
 export const metadata = pageMetadata({
   title: "Pricing",
-  description: `${site.productName} offers Teacher and Coordinator Portals with simple annual pricing starting at $300 per year, plus custom-configured Suites for scholastic and corporate media programs. Talk to us to scope your deployment.`,
+  description: `${site.productName} offers Teacher and Coordinator Portals with simple annual pricing starting at ${formatUsd(portals[0].amountCents)} per year, plus individually priced add-ons and custom-configured Suites for scholastic and corporate media programs. Talk to us to scope your deployment.`,
   path: "/pricing",
 });
+
+// Derived from the catalog so this can never drift from what /buy actually charges.
+const allPrices = [...portals, ...addOns].map((s) => s.amountCents);
 
 const productSchema = {
   "@context": "https://schema.org",
@@ -22,7 +26,9 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
-    lowPrice: "300",
+    lowPrice: String(Math.min(...allPrices) / 100),
+    highPrice: String(Math.max(...allPrices) / 100),
+    offerCount: allPrices.length,
   },
 };
 

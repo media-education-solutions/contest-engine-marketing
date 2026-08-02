@@ -38,6 +38,7 @@ ${clients}
 ## Pages
 
 - [How it works](${site.url}/how-it-works): the full workflow for organizers, participants, and judges
+- [Buy](${site.url}/buy): purchase a Teacher or Coordinator Portal and add-ons online
 - [Contact](${site.url}/contact): talk to the team about running your contest
 
 ## Company

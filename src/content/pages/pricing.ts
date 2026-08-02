@@ -3,6 +3,9 @@ import type { PricingTiersProps } from "@/components/blocks/pricing-tiers";
 import type { FaqProps } from "@/components/blocks/faq";
 import type { CtaBannerProps } from "@/components/blocks/cta-banner";
 import { site } from "@/content/site";
+import { portals, addOns as addOnCatalog, formatUsd } from "@/content/commerce";
+
+const [teacherPortal, coordinatorPortal] = portals;
 
 export const intro: PageIntroProps = {
   kicker: "Pricing",
@@ -16,8 +19,8 @@ export const pricing: PricingTiersProps = {
     {
       name: "Teacher Portal",
       audience: "Professional media contests for classrooms and small creative programs.",
-      price: "$300",
-      priceNote: "per year",
+      price: formatUsd(teacherPortal.amountCents),
+      priceNote: teacherPortal.priceNote,
       features: [
         "One branded contest portal",
         "Multiple photo and video categories",
@@ -28,13 +31,13 @@ export const pricing: PricingTiersProps = {
         "25 participant access codes",
         "25 GB media library with configurable upload limits",
       ],
-      cta: { label: "Buy Now", href: "/contact" },
+      cta: { label: "Buy Now", href: "/buy?plan=teacher-portal" },
     },
     {
       name: "Coordinator Portal",
       audience: "Built for schools, nonprofit coordinators, and growing media programs.",
-      price: "$1,200",
-      priceNote: "per year",
+      price: formatUsd(coordinatorPortal.amountCents),
+      priceNote: coordinatorPortal.priceNote,
       features: [
         "Everything in the Teacher Portal",
         "Configurable divisions and categories",
@@ -45,7 +48,7 @@ export const pricing: PricingTiersProps = {
         "100 GB media library",
         "180-day media hosting and streaming",
       ],
-      cta: { label: "Buy Now", href: "/contact" },
+      cta: { label: "Buy Now", href: "/buy?plan=coordinator-portal" },
     },
   ],
   suites: {
@@ -96,6 +99,15 @@ export const pricing: PricingTiersProps = {
       "Participant feedback tools",
     ],
   },
+  addOns: {
+    title: "Add-ons",
+    intro: "Extend any Portal. Add them at checkout or any time after.",
+    items: addOnCatalog.map((a) => ({
+      name: a.name,
+      description: a.blurb,
+      price: formatUsd(a.amountCents),
+    })),
+  },
   cta: { label: "Talk to Us", href: "/contact" },
 };
 
@@ -109,7 +121,7 @@ export const faq: FaqProps = {
     },
     {
       question: "Can we upgrade later?",
-      answer: "Absolutely. Organizations can start with a Portal and add more capacity until they're ready to move into a Suite. More participants, added accessibility, and larger file capacity can all be purchased as add-ons.",
+      answer: "Absolutely. Organizations can start with a Portal and add more capacity until they're ready to move into a Suite. More participants, added accessibility, and larger file capacity can all be purchased as add-ons — see the pricing above for what's available.",
     },
     {
       question: `Can we try ${site.productName} before committing?`,

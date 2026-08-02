@@ -11,6 +11,7 @@ const routes: Array<{ path: string; priority: number }> = [
   { path: "/why-contest-engine", priority: 0.8 },
   { path: "/who-we-help", priority: 0.8 },
   { path: "/pricing", priority: 0.8 },
+  { path: "/buy", priority: 0.7 },
   { path: "/about", priority: 0.6 },
   { path: "/contact", priority: 0.8 },
 ];

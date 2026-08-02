@@ -19,6 +19,7 @@ const PAGES = [
   { name: "why-contest-engine", path: "/why-contest-engine" },
   { name: "who-we-help", path: "/who-we-help" },
   { name: "pricing", path: "/pricing" },
+  { name: "buy", path: "/buy" },
   { name: "about", path: "/about" },
   { name: "contact", path: "/contact" },
   { name: "blocks", path: "/dev/blocks" },

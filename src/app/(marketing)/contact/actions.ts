@@ -7,6 +7,7 @@ import {
   notifyInquiry,
   type ContactInquiry,
 } from "@/lib/contact-delivery";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Please tell us your name.").max(200),
@@ -37,23 +38,6 @@ export type ContactFormState = {
   /** Echoed back on error so the form re-renders with input intact. */
   values?: ContactFormValues;
 };
-
-async function verifyTurnstile(token: string | null): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true; // not configured yet — honeypot still applies
-  if (!token) return false;
-
-  const res = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secret, response: token }),
-    },
-  );
-  const data = (await res.json()) as { success: boolean };
-  return data.success;
-}
 
 /**
  * Store the inquiry and notify the team. These are independent paths run

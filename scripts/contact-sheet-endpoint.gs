@@ -1,21 +1,28 @@
 /**
- * Contest Engine — contact form notification endpoint (MED-31).
+ * Contest Engine — contact form + purchase notification endpoint (MED-31, MED-32).
  *
  * Canonical copy. NOT built or imported by the site: paste into the Apps Script
  * project bound to the "Contest Engine Marketing" spreadsheet, then
  * Deploy > Manage deployments > edit > New version (keeps the same /exec URL).
  *
- * Called server-side by notifyInquiry() in src/lib/contact-delivery.ts.
- * Auth is the shared TOKEN in Script Properties, matched against CONTACT_SCRIPT_TOKEN.
+ * Called server-side by notifyInquiry() in src/lib/contact-delivery.ts and
+ * notifyPurchase() in src/lib/purchase-delivery.ts. Auth is the shared TOKEN
+ * in Script Properties, matched against CONTACT_SCRIPT_TOKEN. `body.kind`
+ * selects the path; missing/absent kind defaults to "contact" so the
+ * existing form is untouched.
  */
-// Everyone who should get the new-inquiry email. Add or remove addresses freely,
-// then redeploy (Manage deployments > edit > New version). Each address counts
-// separately against the MailApp daily quota.
+// Everyone who should get the new-inquiry / new-purchase email. Add or remove
+// addresses freely, then redeploy (Manage deployments > edit > New version).
+// Each address counts separately against the MailApp daily quota.
 const NOTIFY_EMAILS = ['hello@example.com'];
 
 // The TAB name (bottom of the spreadsheet window), not the file name. Falls back
 // to the first tab below if no tab matches, so a stock "Sheet1" still works.
 const SHEET_NAME = 'Inquiries';
+
+// Must exist as its own tab — unlike SHEET_NAME there is no fallback, because
+// falling back to the Inquiries tab would silently merge two different shapes.
+const PURCHASE_SHEET_NAME = 'Purchases';
 
 function doPost(e) {
   try {
@@ -26,44 +33,100 @@ function doPost(e) {
       return json({ ok: false, error: 'unauthorized' });
     }
 
-    // Append first: a mail failure must never cost us the Sheet row.
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
-    sheet.appendRow([
-      new Date(),
-      body.name || '',
-      body.email || '',
-      body.organization || '',
-      body.role || '',
-      body.message || '',
-    ]);
-
-    let mailed = true;
-    try {
-      MailApp.sendEmail({
-        to: NOTIFY_EMAILS.join(','), // comma-separated = one email, several recipients
-        replyTo: body.email,
-        subject:
-          'New inquiry from ' +
-          body.name +
-          (body.organization ? ' (' + body.organization + ')' : ''),
-        body: [
-          'Name: ' + body.name,
-          'Email: ' + body.email,
-          'Organization: ' + (body.organization || '—'),
-          'Role: ' + body.role,
-          '',
-          body.message,
-        ].join('\n'),
-      });
-    } catch (mailErr) {
-      mailed = false; // quota or scope problem — the row is already safe
-      console.error('mail failed: ' + mailErr);
-    }
-
-    return json({ ok: true, mailed: mailed });
+    const kind = body.kind || 'contact';
+    return kind === 'purchase' ? handlePurchase(body) : handleContact(body);
   } catch (err) {
     return json({ ok: false, error: String(err) });
+  }
+}
+
+function handleContact(body) {
+  // Append first: a mail failure must never cost us the Sheet row.
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
+  sheet.appendRow([
+    new Date(),
+    body.name || '',
+    body.email || '',
+    body.organization || '',
+    body.role || '',
+    body.message || '',
+  ]);
+
+  const mailed = sendMail({
+    to: NOTIFY_EMAILS.join(','), // comma-separated = one email, several recipients
+    replyTo: body.email,
+    subject:
+      'New inquiry from ' +
+      body.name +
+      (body.organization ? ' (' + body.organization + ')' : ''),
+    body: [
+      'Name: ' + body.name,
+      'Email: ' + body.email,
+      'Organization: ' + (body.organization || '—'),
+      'Role: ' + body.role,
+      '',
+      body.message,
+    ].join('\n'),
+  });
+
+  return json({ ok: true, mailed: mailed });
+}
+
+function handlePurchase(body) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(PURCHASE_SHEET_NAME);
+  if (!sheet) {
+    return json({ ok: false, error: 'missing "Purchases" tab' });
+  }
+
+  // Append first: a mail failure must never cost us the Sheet row.
+  const addOns = body.addOns || [];
+  sheet.appendRow([
+    new Date(),
+    body.teacherName || '',
+    body.email || '',
+    body.phone || '',
+    body.schoolName || '',
+    body.schoolAddress || '',
+    body.schoolPhone || '',
+    body.plan || '',
+    addOns.join(', '),
+    body.amount || '',
+    body.stripeSessionId || '',
+  ]);
+
+  const mailed = sendMail({
+    to: NOTIFY_EMAILS.join(','),
+    replyTo: body.email,
+    subject: 'New Contest Engine purchase — ' + (body.schoolName || body.teacherName || ''),
+    body: [
+      'Plan: ' + body.plan,
+      'Add-ons: ' + (addOns.length ? addOns.join(', ') : 'none'),
+      'Amount: $' + ((body.amount || 0) / 100).toFixed(2),
+      '',
+      'Teacher: ' + body.teacherName,
+      'Email: ' + body.email,
+      'Phone: ' + (body.phone || '—'),
+      '',
+      'School: ' + body.schoolName,
+      'Address: ' + (body.schoolAddress || '—'),
+      'School phone: ' + (body.schoolPhone || '—'),
+      '',
+      'Stripe session: ' + body.stripeSessionId,
+    ].join('\n'),
+  });
+
+  return json({ ok: true, mailed: mailed });
+}
+
+function sendMail(opts) {
+  try {
+    MailApp.sendEmail(opts);
+    return true;
+  } catch (mailErr) {
+    console.error('mail failed: ' + mailErr); // quota or scope problem — the row is already safe
+    return false;
   }
 }
 

@@ -225,7 +225,11 @@ export const doc: LegalDocProps = {
       body: [
         {
           kind: "p",
-          text: `${site.productName} may utilize reputable third-party service providers for hosting, authentication, storage, email delivery, video processing, analytics, infrastructure management, and related services.`,
+          text: `${site.productName} may utilize reputable third-party service providers for hosting, authentication, storage, email delivery, video processing, analytics, payment processing, infrastructure management, and related services.`,
+        },
+        {
+          kind: "p",
+          text: "Payment card details are submitted directly to our payment processor and are never stored by us.",
         },
         {
           kind: "p",

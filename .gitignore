@@ -43,6 +43,8 @@ next-env.d.ts
 # AI
 .claude
 Claude.md
+.agents
+skills-lock.json
 
 # Local docs
 docs/

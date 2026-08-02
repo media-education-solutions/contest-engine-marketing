@@ -1,0 +1,49 @@
+import type { PageIntroProps } from "@/components/blocks/page-intro";
+import { site } from "@/content/site";
+
+export const intro: PageIntroProps = {
+  kicker: "Buy",
+  title: "Purchase your Portal",
+  subtitle: `Pick your ${site.productName} Portal, add any extras, and check out securely. We'll follow up by email to get your account activated.`,
+};
+
+export const form = {
+  portalLabel: "Portal",
+  addOnsLabel: "Add-ons",
+  summaryLabel: "Order total",
+  fields: {
+    teacherName: "Your name",
+    email: "Email",
+    phone: "Phone",
+    schoolName: "School or organization",
+    schoolAddress: "School address",
+    schoolPhone: "School phone",
+  },
+  submitLabel: "Continue to payment",
+  submitPendingLabel: "Redirecting to checkout…",
+  poNote: {
+    text: "Need to pay by purchase order or check?",
+    linkLabel: "Talk to us",
+    href: "/contact",
+  },
+  errors: {
+    generic: "Something went wrong. Please try again in a moment.",
+    notHuman: "We couldn't verify you're human. Please try again.",
+    unavailable: "Purchasing is temporarily unavailable — please contact us instead.",
+    invalidSelection: "That selection isn't valid. Please refresh the page and try again.",
+  },
+};
+
+export const disabled = {
+  title: "Purchasing is temporarily unavailable",
+  body: "We're not able to process payments online right now. Contact us and we'll get your Portal set up.",
+  cta: { label: "Contact us", href: "/contact" },
+};
+
+export const success = {
+  kicker: "Thank you",
+  title: "Payment received",
+  subtitle:
+    "We'll follow up by email within one business day to activate your Portal and get your contest started.",
+  cta: { label: "Back to pricing", href: "/pricing" },
+};

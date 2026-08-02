@@ -24,7 +24,6 @@ export const site = {
   url: "https://contest-engine.com",
 
   contact: {
-    /** Inbox is configured via env (CONTACT_INBOX), not hardcoded. */
     formEnabled: true,
   },
 
