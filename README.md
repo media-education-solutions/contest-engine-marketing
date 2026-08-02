@@ -19,3 +19,6 @@ Strict one-way layering: **content → blocks → pages**. All copy (including t
 
 ## Project tracking
 Linear: [Contest Engine Marketing Website](https://linear.app/media-education-solutions/project/contest-engine-marketing-website-1231d9daa89e)
+
+## Stripe
+Test credentials, webhook setup, and env vars: [STRIPE.md](./STRIPE.md)
