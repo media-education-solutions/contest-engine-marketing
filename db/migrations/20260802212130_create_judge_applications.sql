@@ -1,9 +1,9 @@
--- Contest Engine — judge interest applications (MED-35).
---
--- Canonical schema. Run once in the Neon SQL editor (or psql against NEON_DB_URL).
--- There is no migration tooling in this repo by design.
--- Written by saveApplication() in src/lib/judge-delivery.ts.
+-- migrate:up
 
+-- Baseline: judge_applications was created by hand in the Neon console for MED-35,
+-- before this repo had migration tooling. `if not exists` makes applying this to
+-- the live database a no-op that only records the version.
+-- Written by saveApplication() in src/lib/judge-delivery.ts.
 create table if not exists judge_applications (
   id         bigint generated always as identity primary key,
   created_at timestamptz not null default now(),
@@ -25,3 +25,10 @@ create index if not exists judge_applications_unnotified_idx
 -- The evaluator network, by lane.
 create index if not exists judge_applications_kind_idx
   on judge_applications (kind, created_at desc);
+
+-- migrate:down
+-- WARNING: running this against production drops the table and every row in it.
+-- `db:rollback` is for local iteration only.
+drop index if exists judge_applications_kind_idx;
+drop index if exists judge_applications_unnotified_idx;
+drop table if exists judge_applications;

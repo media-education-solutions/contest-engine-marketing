@@ -1,9 +1,9 @@
--- Contest Engine — Stripe purchase orders (MED-32).
---
--- Canonical schema. Run once in the Neon SQL editor (or psql against NEON_DB_URL).
--- There is no migration tooling in this repo by design.
--- Written by createPendingOrder() / markOrderPaid() in src/lib/purchase-delivery.ts.
+-- migrate:up
 
+-- Baseline: purchase_orders was created by hand in the Neon console for MED-32,
+-- before this repo had migration tooling. `if not exists` makes applying this to
+-- the live database a no-op that only records the version.
+-- Written by createPendingOrder() / markOrderPaid() in src/lib/purchase-delivery.ts.
 create table if not exists purchase_orders (
   id                bigint generated always as identity primary key,
   created_at        timestamptz not null default now(),
@@ -39,3 +39,11 @@ create index if not exists purchase_orders_pending_idx
 -- ACH in flight. Anything sitting here past ~7 business days never resolved either way.
 create index if not exists purchase_orders_processing_idx
   on purchase_orders (created_at desc) where status = 'processing';
+
+-- migrate:down
+-- WARNING: running this against production drops the table and every row in it.
+-- `db:rollback` is for local iteration only.
+drop index if exists purchase_orders_processing_idx;
+drop index if exists purchase_orders_pending_idx;
+drop index if exists purchase_orders_unnotified_idx;
+drop table if exists purchase_orders;

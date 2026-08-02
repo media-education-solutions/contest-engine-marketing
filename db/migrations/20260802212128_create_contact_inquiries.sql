@@ -1,9 +1,9 @@
--- Contest Engine — contact form inquiries (MED-31).
---
--- Canonical schema. Run once in the Neon SQL editor (or psql against NEON_DB_URL).
--- There is no migration tooling in this repo by design — one table, created once.
--- Written by saveInquiry() in src/lib/contact-delivery.ts.
+-- migrate:up
 
+-- Baseline: contact_inquiries was created by hand in the Neon console for MED-31,
+-- before this repo had migration tooling. `if not exists` makes applying this to
+-- the live database a no-op that only records the version.
+-- Written by saveInquiry() in src/lib/contact-delivery.ts.
 create table if not exists contact_inquiries (
   id           bigint generated always as identity primary key,
   created_at   timestamptz not null default now(),
@@ -19,3 +19,9 @@ create table if not exists contact_inquiries (
 -- Cheap lookup for inquiries that were stored but never notified.
 create index if not exists contact_inquiries_unnotified_idx
   on contact_inquiries (created_at desc) where not notified;
+
+-- migrate:down
+-- WARNING: running this against production drops the table and every row in it.
+-- `db:rollback` is for local iteration only.
+drop index if exists contact_inquiries_unnotified_idx;
+drop table if exists contact_inquiries;

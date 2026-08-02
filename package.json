@@ -9,7 +9,11 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "shots": "playwright test",
-    "lighthouse": "node scripts/lighthouse.mjs"
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "db:new": "dbmate $([ -f .env.local ] && echo '--env-file .env.local') -e NEON_DB_DIRECT_URL --no-dump-schema new",
+    "db:migrate": "dbmate $([ -f .env.local ] && echo '--env-file .env.local') -e NEON_DB_DIRECT_URL --no-dump-schema migrate",
+    "db:status": "dbmate $([ -f .env.local ] && echo '--env-file .env.local') -e NEON_DB_DIRECT_URL --no-dump-schema status",
+    "db:rollback": "dbmate $([ -f .env.local ] && echo '--env-file .env.local') -e NEON_DB_DIRECT_URL --no-dump-schema rollback"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -33,6 +37,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dbmate": "^2.34.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
