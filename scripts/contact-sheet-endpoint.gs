@@ -10,12 +10,41 @@
  * notifyPurchase() in src/lib/purchase-delivery.ts. Auth is the shared TOKEN
  * in Script Properties, matched against CONTACT_SCRIPT_TOKEN. `body.kind`
  * selects the path; missing/absent kind defaults to "contact" so the
- * existing form is untouched.
+ * existing form is untouched. Contact landing pages can optionally set
+ * `body.notifyRoute` to an allowlisted audience such as "teacher" or
+ * "coordinator".
  */
-// Everyone who should get the new-inquiry / new-purchase email. Add or remove
-// addresses freely, then redeploy (Manage deployments > edit > New version).
-// Each address counts separately against the MailApp daily quota.
-const NOTIFY_EMAILS = ['hello@example.com'];
+// Notification recipients are configured in Apps Script > Project Settings >
+// Script properties. Values are comma-separated so a route can have more than
+// one recipient without changing this code or redeploying the web app.
+//
+// The defaults keep the endpoint safe during setup and are also the current
+// production routing:
+//   contact / purchase -> info@educationsolutions.media
+//   judge              -> judging@educationsolutions.media
+//
+// Add teacher/coordinator properties when those landing pages have their own
+// destinations. Until then, those routes fall back to the contact recipient.
+const DEFAULT_NOTIFY_EMAILS = {
+  contact: 'info@educationsolutions.media',
+  purchase: 'info@educationsolutions.media',
+  judge: 'judging@educationsolutions.media',
+  teacher: 'info@educationsolutions.media',
+  coordinator: 'info@educationsolutions.media',
+};
+
+const NOTIFY_PROPERTY_NAMES = {
+  contact: 'CONTACT_NOTIFY_EMAILS',
+  purchase: 'PURCHASE_NOTIFY_EMAILS',
+  judge: 'JUDGE_NOTIFY_EMAILS',
+  teacher: 'TEACHER_NOTIFY_EMAILS',
+  coordinator: 'COORDINATOR_NOTIFY_EMAILS',
+};
+
+// Contact landing pages may opt into an audience route by sending
+// `notifyRoute`. Keep this allowlist separate from the property lookup so a
+// request can never select an arbitrary Script Property as a destination.
+const CONTACT_NOTIFY_ROUTES = ['teacher', 'coordinator'];
 
 // The TAB name (bottom of the spreadsheet window), not the file name. Falls back
 // to the first tab below if no tab matches, so a stock "Sheet1" still works.
@@ -46,6 +75,28 @@ function doPost(e) {
   }
 }
 
+function recipientsFor(route) {
+  const propertyName =
+    NOTIFY_PROPERTY_NAMES[route] || NOTIFY_PROPERTY_NAMES.contact;
+  const fallback =
+    DEFAULT_NOTIFY_EMAILS[route] || DEFAULT_NOTIFY_EMAILS.contact;
+  const configured = PropertiesService.getScriptProperties().getProperty(propertyName);
+
+  return (configured || fallback)
+    .split(',')
+    .map(function (email) {
+      return email.trim();
+    })
+    .filter(Boolean)
+    .join(',');
+}
+
+function contactRoute(body) {
+  return CONTACT_NOTIFY_ROUTES.indexOf(body.notifyRoute) >= 0
+    ? body.notifyRoute
+    : 'contact';
+}
+
 function handleContact(body) {
   // Append first: a mail failure must never cost us the Sheet row.
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -60,7 +111,7 @@ function handleContact(body) {
   ]);
 
   const mailed = sendMail({
-    to: NOTIFY_EMAILS.join(','), // comma-separated = one email, several recipients
+    to: recipientsFor(contactRoute(body)),
     replyTo: body.email,
     subject:
       'New inquiry from ' +
@@ -103,7 +154,7 @@ function handlePurchase(body) {
   ]);
 
   const mailed = sendMail({
-    to: NOTIFY_EMAILS.join(','),
+    to: recipientsFor('purchase'),
     replyTo: body.email,
     subject: 'New Contest Engine purchase — ' + (body.schoolName || body.teacherName || ''),
     body: [
@@ -140,7 +191,7 @@ function handleJudge(body) {
   ]);
 
   const mailed = sendMail({
-    to: NOTIFY_EMAILS.join(','),
+    to: recipientsFor('judge'),
     replyTo: body.email,
     subject: 'New judge interest — ' + (body.judgeKind || '') + ': ' + body.name,
     body: [
