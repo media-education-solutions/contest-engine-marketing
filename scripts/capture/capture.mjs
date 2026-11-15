@@ -65,6 +65,7 @@ try {
         const { bytes, crf } = encode(result, {
           out: abs(job.output),
           poster: abs(job.poster),
+          posterFrame: job.posterFrame,
           encodeWidth: job.encodeWidth,
         });
         console.log(`  ${result.frames.length} frames → ${job.output} (${mb(bytes)}, CRF ${crf})`);

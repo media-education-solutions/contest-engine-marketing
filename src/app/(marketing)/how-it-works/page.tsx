@@ -8,9 +8,9 @@ import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import * as content from "@/content/pages/how-it-works";
 import {
   contestSetupClip,
+  ownerDashboardClip,
   rankingClip,
   registrationClip,
-  studentResultsClip,
 } from "@/content/product-media";
 
 export const metadata = pageMetadata({
@@ -23,7 +23,7 @@ const mediaByRole: Record<string, ReactNode> = {
   organizers: <VideoEmbed {...contestSetupClip} />,
   students: <VideoEmbed {...registrationClip} />,
   judges: <VideoEmbed {...rankingClip} />,
-  results: <VideoEmbed {...studentResultsClip} />,
+  results: <VideoEmbed {...ownerDashboardClip} />,
 };
 
 export default function HowItWorksPage() {
