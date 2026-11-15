@@ -55,6 +55,7 @@ try {
       await withPage(browser, job, async (page, h) => {
         await job.setup(page);
         const recording = await startRecording(page, { name: job.name, viewport: job.viewport });
+        h.attach(recording);
         let result;
         try {
           await job.run(page, h);

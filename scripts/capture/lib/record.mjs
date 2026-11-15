@@ -11,6 +11,7 @@ import { writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { MAX_POSTER_BYTES, MAX_VIDEO_BYTES, OUT_DIR } from "./config.mjs";
 
+const CUT_SECONDS = 0.12; // length of the hold across a cut (see startRecording().pauseCapture)
 const HOLD_SECONDS = 1.5; // rest on the payoff frame so the last state lands
 
 /** Start a screencast on `page`. Returns `{ stop }` which resolves to the frame list. */
@@ -22,12 +23,16 @@ export async function startRecording(page, { name, viewport }) {
   const cdp = await page.context().newCDPSession(page);
   const frames = [];
   const writes = [];
+  let paused = false;
+  let resumed = false; // the next stored frame follows a cut
 
   cdp.on("Page.screencastFrame", ({ data, metadata, sessionId }) => {
-    const file = join(dir, "frames", `${String(frames.length).padStart(5, "0")}.jpg`);
-    frames.push({ file, t: metadata.timestamp });
-    writes.push(writeFile(file, Buffer.from(data, "base64")));
     cdp.send("Page.screencastFrameAck", { sessionId }).catch(() => {});
+    if (paused) return;
+    const file = join(dir, "frames", `${String(frames.length).padStart(5, "0")}.jpg`);
+    frames.push({ file, t: metadata.timestamp, afterCut: resumed });
+    resumed = false;
+    writes.push(writeFile(file, Buffer.from(data, "base64")));
   });
 
   await cdp.send("Page.startScreencast", {
@@ -39,6 +44,15 @@ export async function startRecording(page, { name, viewport }) {
 
   return {
     dir,
+    /** Stop storing frames (a wait that would be dead air, like a slow page load). */
+    pauseCapture() {
+      paused = true;
+    },
+    /** Resume storing. The next frame lands right after the last one: a hard cut. */
+    resumeCapture() {
+      paused = false;
+      resumed = true;
+    },
     async stop() {
       await cdp.send("Page.stopScreencast").catch(() => {});
       await Promise.all(writes);
@@ -56,7 +70,7 @@ function writeConcatList({ dir, frames }) {
   const lines = [];
   frames.forEach((f, i) => {
     const next = frames[i + 1];
-    const gap = next ? Math.max(next.t - f.t, 1 / 120) : HOLD_SECONDS;
+    const gap = next ? (next.afterCut ? CUT_SECONDS : Math.max(next.t - f.t, 1 / 120)) : HOLD_SECONDS;
     lines.push(`file '${f.file}'`, `duration ${gap.toFixed(4)}`);
   });
   lines.push(`file '${frames.at(-1).file}'`);

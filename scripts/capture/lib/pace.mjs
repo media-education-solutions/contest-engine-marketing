@@ -4,6 +4,27 @@
 /** @param {import("@playwright/test").Page} page */
 export function createPacer(page) {
   let pos = null;
+  let recorder = null;
+
+  /** Called by capture.mjs once the screencast starts, so waits can be cut out of it. */
+  const attach = (recording) => {
+    recorder = recording;
+  };
+
+  /**
+   * Run `fn` (a slow wait, e.g. a page load) without recording it. The clip hard-cuts across
+   * it. A nudge of the cursor afterwards forces a repaint, because the screencast only
+   * emits frames when the page changes.
+   */
+  async function skipWhile(fn) {
+    recorder?.pauseCapture();
+    try {
+      await fn();
+    } finally {
+      recorder?.resumeCapture();
+      if (pos) await page.mouse.move(pos.x + 2, pos.y + 2);
+    }
+  }
 
   const pause = (ms) => page.waitForTimeout(ms);
 
@@ -49,22 +70,38 @@ export function createPacer(page) {
     await pause(400);
   }
 
-  /** Ease-scroll so `locator` sits at `align` (0 = top, 0.5 = middle) of the viewport. */
+  /**
+   * Ease-scroll so `locator` sits at `align` (0 = top, 0.5 = middle) of its scroll container:
+   * the nearest scrollable ancestor (e.g. an open side sheet), else the window.
+   */
   async function scrollTo(locator, { ms = 900, align = 0.5 } = {}) {
     const handle = await locator.elementHandle();
     if (!handle) throw new Error("scrollTo: element not found");
     await handle.evaluate(
       (el, { ms, align }) =>
         new Promise((resolve) => {
+          let scroller = el.parentElement;
+          while (scroller && scroller !== document.body) {
+            const { overflowY } = getComputedStyle(scroller);
+            if (/(auto|scroll)/.test(overflowY) && scroller.scrollHeight > scroller.clientHeight) break;
+            scroller = scroller.parentElement;
+          }
+          const useWindow = !scroller || scroller === document.body;
+          const view = useWindow
+            ? { top: 0, height: window.innerHeight, from: window.scrollY, max: document.documentElement.scrollHeight - window.innerHeight }
+            : (() => {
+                const r = scroller.getBoundingClientRect();
+                return { top: r.top, height: scroller.clientHeight, from: scroller.scrollTop, max: scroller.scrollHeight - scroller.clientHeight };
+              })();
           const rect = el.getBoundingClientRect();
-          const from = window.scrollY;
-          const max = document.documentElement.scrollHeight - window.innerHeight;
-          const to = Math.max(0, Math.min(max, from + rect.top - (window.innerHeight - rect.height) * align));
+          const to = Math.max(0, Math.min(view.max, view.from + rect.top - view.top - (view.height - rect.height) * align));
           const start = performance.now();
           const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
           const tick = (now) => {
             const t = Math.min(1, (now - start) / ms);
-            window.scrollTo(0, from + (to - from) * ease(t));
+            const y = view.from + (to - view.from) * ease(t);
+            if (useWindow) window.scrollTo(0, y);
+            else scroller.scrollTop = y;
             if (t < 1) requestAnimationFrame(tick);
             else resolve();
           };
@@ -75,5 +112,5 @@ export function createPacer(page) {
     await pause(250);
   }
 
-  return { pause, moveTo, park, click, typeSlow, drag, scrollTo, get pos() { return pos; } };
+  return { pause, moveTo, park, click, typeSlow, drag, scrollTo, attach, skipWhile, get pos() { return pos; } };
 }

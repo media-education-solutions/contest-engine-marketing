@@ -4,7 +4,7 @@
 // `npm run demo:seed` before re-shooting. S1 reads the state clip 1 leaves behind, so
 // shoot clip 1 first.
 
-import { VIEWPORTS } from "../lib/config.mjs";
+import { APP_URL, VIEWPORTS } from "../lib/config.mjs";
 import { entryCard, openJudgeCategory } from "../lib/app.mjs";
 import { hideCursor } from "../lib/overlay.mjs";
 
@@ -83,6 +83,22 @@ export const stills = [
       await h.scrollTo(page.locator("iframe"), { ms: 1, align: 0 });
       await page.evaluate((px) => window.scrollBy(0, -px), 28); // breathing room above the player
       await h.pause(600); // let the video poster paint
+    },
+  },
+  {
+    id: "S2",
+    name: "judge_dashboard",
+    role: "judge",
+    ...VIEWPORTS["4/3"],
+    output: "public/assets/photo/judge/judge_dashboard.png",
+
+    /** Priya's dashboard: stat cards plus the Lakeside and Riverbend contest cards. */
+    async run(page, h) {
+      await page.goto(`${APP_URL}/judge/dashboard`);
+      await page.getByText(CONTEST, { exact: true }).waitFor();
+      await page.getByText("Lakeside Student Film Festival", { exact: true }).waitFor();
+      await hideCursor(page);
+      await h.pause(800);
     },
   },
 ];
