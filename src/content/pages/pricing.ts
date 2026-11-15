@@ -136,7 +136,7 @@ export const faq: FaqProps = {
     },
     {
       question: "Can we upgrade later?",
-      answer: "Absolutely. Start with a Single or Classroom Engine and add capacity as you grow. More participant codes, QR code access, and extra storage are all available as add-ons. When you're ready for more, move up to a Professional, Convention, or Scholastic Engine.",
+      answer: "Absolutely. Start with a Single or Classroom Engine and add capacity as you grow. More participant codes and extra storage are available as add-ons. When you're ready for more, move up to a Professional, Convention, or Scholastic Engine.",
     },
     {
       question: `Can we try ${site.productName} before committing?`,

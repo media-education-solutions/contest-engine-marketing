@@ -89,13 +89,6 @@ export const addOns = [
     appliesTo: ["single-engine", "classroom-engine"],
   },
   {
-    id: "qr-access",
-    name: "QR code participant access",
-    blurb: "Let participants join by scanning a code — no logins to distribute.",
-    amountCents: 10_000,
-    appliesTo: ["single-engine", "classroom-engine"],
-  },
-  {
     id: "training",
     name: "One-hour Google Meet training",
     blurb: "A live walkthrough with our team before your contest opens.",

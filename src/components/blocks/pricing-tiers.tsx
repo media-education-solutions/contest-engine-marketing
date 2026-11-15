@@ -189,7 +189,12 @@ export function PricingTiers({
                 {addOns.intro}
               </p>
             )}
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div
+              className={cn(
+                "mt-8 grid gap-4 sm:grid-cols-2",
+                addOns.items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4",
+              )}
+            >
               {addOns.items.map((item) => (
                 <div
                   key={item.name}
