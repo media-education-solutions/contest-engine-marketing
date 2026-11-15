@@ -7,13 +7,14 @@ Competition lives in production and is view-only.
 
 ## What it creates
 
-Three fictional contests, each at a different stage, so every flow can be filmed:
+Four fictional contests, each at a different stage, so every flow can be filmed:
 
 | Contest | Code | Stage | Use it for |
 |---|---|---|---|
 | Lakeside Student Film Festival | `LKSF26` | Finished, results published | Results, winners, admin overview |
 | Riverbend Youth Media Awards | `RVMA26` | Judging in progress | Judge rating (hero), drag-to-rank |
 | Harbor City Student Showcase | `HCSS27` | Open, QR registration on | Code entry, self-registration |
+| Tri-County Student Media Festival | `TCSM26` | Reviewed: 16 categories judged and approved, results not published | Owner dashboard (owner code `74121504`) |
 
 In Riverbend, judge3 has three categories:
 - **Documentary:** half reviewed. *Behind the Lens* is left for the hero clip.

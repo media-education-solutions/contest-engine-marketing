@@ -3,10 +3,12 @@
 // the app says so, on purpose: every string here can end up on camera. Clips are the
 // approved Mixkit stock in stock.json, referenced by id.
 //
-// Three contests at different lifecycle stages, so every flow can be filmed:
+// Four contests at different lifecycle stages, so every flow can be filmed:
 //   finished: results published, winners visible (results/winners shots)
 //   judging:  deadlines passed, judge3 mid-review (judging, rating, ranking shots)
 //   open:     taking entries, QR self-registration on (student-side shots)
+//   reviewed: all 16 categories judged and approved, results not yet published (the owner
+//             dashboard: a long table, every row "finished" with See winners + CSV)
 //
 // Review shape: [clipId, title, rating?, feedback?]. No rating = not reviewed yet.
 
@@ -43,6 +45,30 @@ export const CATEGORY_COPY = {
     description: "A public service announcement about an issue in your community.",
     rules: "30 to 60 seconds. End with a clear call to action.",
   },
+  Commercial: {
+    description: "A short ad for a real or imagined product, service or school program.",
+    rules: "30 to 60 seconds. No copyrighted brands or logos.",
+  },
+  "Podcast Interview": {
+    description: "A recorded conversation with someone in your school or community.",
+    rules: "Up to 6 minutes. Video of the conversation, with the guest's permission.",
+  },
+  "Spot Feature": {
+    description: "A short human-interest story about one person or place.",
+    rules: "Up to 2 minutes. Get permission from everyone you feature.",
+  },
+  "Sports Commentary": {
+    description: "Live-style play-by-play or color commentary over a game.",
+    rules: "Up to 3 minutes. Commentary must be recorded by the entrant.",
+  },
+  "10-Second Film": {
+    description: "A complete story in ten seconds.",
+    rules: "Exactly 10 seconds, titles included.",
+  },
+  Cinematography: {
+    description: "A showcase of camera work: composition, light and movement.",
+    rules: "Up to 2 minutes. No dialogue required.",
+  },
 };
 
 export const SCHOOLS = {
@@ -61,6 +87,58 @@ export const SCHOOLS = {
     "Riverside Charter School",
   ],
 };
+
+// --- Generated entries for the owner-dashboard contest -----------------------------
+// That contest needs ~16 categories to make a table worth scrolling, so its entries are
+// built from short title lists instead of hand-written rows. Ratings run 9, 8, 7, ... in
+// listed order (which makes the top three obvious) and feedback rotates through a pool.
+
+const STOCK_IDS = [
+  34477, 46563, 983, 4519, 44454, 43494, 34389, 609, 3267, 44152,
+  51295, 42836, 25556, 47741, 33076, 18308, 9011, 4855, 48525, 42343,
+];
+
+const GENERIC_FEEDBACK = {
+  9: [
+    "Confident from the first frame. Clear vision and polished execution.",
+    "A standout. The pacing and the framing work together beautifully.",
+    "Memorable and well controlled. Hard to find anything to fix.",
+  ],
+  8: [
+    "Strong work with a clear point of view. A tighter edit would make it sing.",
+    "Great instincts with the camera and the audio. Give the ending one more pass.",
+    "Polished and engaging. Push a little further on the opening.",
+  ],
+  7: [
+    "Solid fundamentals. Vary your shot sizes to keep the energy up.",
+    "A good idea that needs a clearer structure from start to finish.",
+    "Nice moments here. Trim the slower stretches for more impact.",
+  ],
+  6: [
+    "A promising start. Work on audio levels and steady your framing.",
+    "Clear effort. Focus the story on one idea and cut the rest.",
+    "Good footage. Give it a beginning, a middle and an end.",
+  ],
+  5: [
+    "Interesting footage that needs a story to hold it together.",
+    "The idea is there. Plan your shots before you film.",
+    "Keep going. Lean into what worked in your best shot.",
+  ],
+};
+
+/** A fully judged category: `titles` in rating order (9, 8, 7, ...), clips rotating from `offset`. */
+function judged(name, judge, offset, titles) {
+  return {
+    name,
+    judge,
+    state: "approved",
+    entries: titles.map((title, i) => {
+      const rating = 9 - i;
+      const pool = GENERIC_FEEDBACK[rating];
+      return [STOCK_IDS[(offset + i) % STOCK_IDS.length], title, rating, pool[(offset + i) % pool.length]];
+    }),
+  };
+}
 
 export const CONTESTS = [
   {
@@ -256,6 +334,52 @@ export const CONTESTS = [
       {
         name: "Middle School",
         categories: [{ name: "Sports Highlights", judge: "maya", state: "open", entries: [[34389, "Kickflip Diaries"]] }],
+      },
+    ],
+  },
+  {
+    key: "reviewed",
+    name: "Tri-County Student Media Festival",
+    code: "TCSM26",
+    ownerCode: "74121504",
+    codePrefix: "74",
+    // 'reviewed' = every category judged, results not published yet. An owner of a 'finished'
+    // contest is redirected to the winners page, so this status is what keeps the owner
+    // dashboard (stat cards + "Categories by Division" table) on screen.
+    status: "reviewed",
+    createdDaysAgo: 90,
+    deadlineDaysFromNow: -30,
+    cover: 3267,
+    description:
+      "A tri-county celebration of student video, from broadcast journalism to short film.",
+    rules: "One entry per student per category. Entries must be original student work.",
+    unusedCodes: 0,
+    divisions: [
+      {
+        name: "High School",
+        categories: [
+          judged("Documentary", "maya", 0, ["The Last Shift", "Grandma's Garden", "Hallway Voices", "Field Notes"]),
+          judged("Music Video", "carlos", 3, ["Neon Static", "Porch Light", "Second Verse"]),
+          judged("Short Film", "maya", 6, ["Paper Planes", "Lost and Found", "The Long Way Home", "Quiet Hours", "Signal"]),
+          judged("Commercial", "carlos", 9, ["Fresh Squeezed", "Bike Share", "Study Buddy", "Lunch Line Deals"]),
+          judged("Podcast Interview", "maya", 12, ["Behind the Mic", "Coach Talks", "Alumni Stories"]),
+          judged("Spot Feature", "carlos", 15, ["The Crossing Guard", "Cafeteria Chef", "Night Custodian", "Band Camp"]),
+          judged("Sports Commentary", "maya", 18, ["Friday Night Call", "Overtime", "Courtside"]),
+          judged("10-Second Film", "carlos", 1, ["Ten Seconds", "Blink", "Door Slam", "Last Bell", "Reflection"]),
+          judged("Cinematography", "maya", 4, ["Golden Hour", "Rain Window", "City Light"]),
+        ],
+      },
+      {
+        name: "Middle School",
+        categories: [
+          judged("Sports Highlights", "carlos", 7, ["Buzzer Beater", "Hat Trick Hero", "Track Day", "Dive In"]),
+          judged("PSA", "maya", 10, ["Look Up", "Be a Buddy", "Water Matters", "Quiet Please"]),
+          judged("Music Video", "carlos", 13, ["Lunch Table Beat", "Loop", "Drum Line"]),
+          judged("Short Film", "maya", 16, ["The Substitute", "Locker 214", "Snow Day"]),
+          judged("Commercial", "carlos", 2, ["Pep Rally", "Lemonade Co", "Scholar Shop", "Library Pass"]),
+          judged("Documentary", "maya", 5, ["Our Bus Driver", "Garden Club", "School Lunch"]),
+          judged("Spot Feature", "carlos", 8, ["Meet the Principal", "Robotics Team", "Art Room"]),
+        ],
       },
     ],
   },

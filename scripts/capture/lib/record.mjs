@@ -84,7 +84,7 @@ function writeConcatList({ dir, frames }) {
  * from the final frame. Raises CRF in steps of 2 until the file is within budget; it
  * does not drop resolution first.
  */
-export function encode(recording, { out, encodeWidth, poster }) {
+export function encode(recording, { out, encodeWidth, poster, posterFrame = "last" }) {
   mkdirSync(dirname(out), { recursive: true });
   const list = writeConcatList(recording);
 
@@ -104,7 +104,10 @@ export function encode(recording, { out, encodeWidth, poster }) {
     crf += 2;
   }
 
-  if (poster) writePoster(recording.frames.at(-1).file, poster, encodeWidth);
+  // The poster is also the reduced-motion experience, so by default it is the payoff frame.
+  // A clip whose payoff is a dense wall of detail can ask for its opening frame instead.
+  const posterSource = posterFrame === "first" ? recording.frames[0] : recording.frames.at(-1);
+  if (poster) writePoster(posterSource.file, poster, encodeWidth);
   return { crf, bytes: statSync(out).size };
 }
 

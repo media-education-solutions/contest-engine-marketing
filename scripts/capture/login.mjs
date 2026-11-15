@@ -5,9 +5,10 @@
 //   npm run capture:login -- admin     sign in as admin@contest-engine.com
 //   npm run capture:login -- judge     sign in as judge3@contest-engine.com
 //   npm run capture:login -- student   enter participant code 71000001 (Lakeside)
+//   npm run capture:login -- owner     enter owner code 74121504 (Tri-County)
 //
-// Run `student` LAST, after the final `npm run demo:seed`: the participant id inside the
-// session changes on every re-seed, and student sessions expire after 120 idle minutes.
+// Run `student` and `owner` LAST, after the final `npm run demo:seed`: code sessions hold ids
+// that change on every re-seed, and they expire after 120 idle minutes.
 // Sessions are written to scripts/capture/.auth/ (gitignored; they are live logins).
 
 import { mkdirSync } from "node:fs";
@@ -29,6 +30,13 @@ const ROLES = {
     start: "/contest/LKSF26",
     done: /\/participant(\/|$)/,
     say: "Enter participant code 71000001",
+  },
+  // Tri-County is 'reviewed', so its owner lands on /owner/dashboard. (An owner of a
+  // 'finished' contest is redirected to the winners page instead.)
+  owner: {
+    start: "/contest/TCSM26",
+    done: /\/owner(\/|$)/,
+    say: "Enter owner code 74121504",
   },
 };
 

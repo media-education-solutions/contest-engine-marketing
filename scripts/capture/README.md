@@ -22,10 +22,11 @@ Supabase **test** project `contest-engine-test` (see `scripts/demo/README.md`).
    ```bash
    npm run capture:login -- admin     # admin@contest-engine.com
    npm run capture:login -- judge     # judge3@contest-engine.com
-   npm run capture:login -- student   # participant code 71000001
+   npm run capture:login -- student   # participant code 71000001 (only the banked clip 4 needs it)
+   npm run capture:login -- owner     # owner code 74121504 (clip 6, the organizer dashboard)
    ```
-   Do `student` **last**: its session holds a participant id that changes on every seed,
-   and it expires after 120 idle minutes.
+   Do `student` and `owner` **last**: their sessions hold ids that change on every seed, and
+   they expire after 120 idle minutes.
 4. **Capture.**
    ```bash
    npm run capture                    # every clip, then every still

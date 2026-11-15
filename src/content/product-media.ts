@@ -34,12 +34,25 @@ export const rankingClip: VideoEmbedProps = {
 export const registrationClip: VideoEmbedProps = {
   src: "/assets/video/participant/participant_registration.mp4",
   poster: "/assets/video/participant/participant_registration_poster.jpg",
-  title: "A student registers with just a name and gets a participant code",
+  title: "A school registers under a single name and gets a participant code",
   aspect: "4/3",
   autoPlay: true,
 };
 
-/** How It Works, results. The student's rubric level, feedback and placement. */
+/** How It Works, results. The organizer's dashboard: every category, its winners and CSV export. */
+export const ownerDashboardClip: VideoEmbedProps = {
+  src: "/assets/video/owner/owner_dashboard.mp4",
+  poster: "/assets/video/owner/owner_dashboard_poster.jpg",
+  title: "An organizer scrolls a dashboard of every category with its submissions, winners and CSV export",
+  aspect: "4/3",
+  autoPlay: true,
+};
+
+/**
+ * Banked, not used by any page: the student's own results (rubric level, feedback, podium).
+ * It was the Awards night clip until the organizer dashboard replaced it. It fits a Teachers
+ * or Features page. Re-shooting it needs a fresh student login (`npm run capture -- --clip 4`).
+ */
 export const studentResultsClip: VideoEmbedProps = {
   src: "/assets/video/participant/participant_results.mp4",
   poster: "/assets/video/participant/participant_results_poster.jpg",

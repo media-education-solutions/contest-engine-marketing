@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
 import * as home from "@/content/pages/home";
+import { engines, quotedEngines, formatUsd } from "@/content/commerce";
 
 /**
  * llms.txt — a concise, plain-markdown product summary for AI crawlers
@@ -12,6 +13,13 @@ export async function GET() {
   const features = home.featureGrid.features
     .map((f) => `- **${f.title}**: ${f.body}`)
     .join("\n");
+
+  const pricing = [
+    ...engines.map((e) => `${e.name} (${formatUsd(e.amountCents)} ${e.priceNote})`),
+    ...quotedEngines.map(
+      (e) => `${e.name} (from ${formatUsd(e.startingCents)} ${e.priceNote})`,
+    ),
+  ].join("; ");
 
   const clients = home.logoCloud.logos.map((l) => `- ${l.name}`).join("\n");
 
@@ -38,7 +46,7 @@ ${clients}
 ## Pages
 
 - [How it works](${site.url}/how-it-works): the full workflow for organizers, participants, and judges
-- [Buy](${site.url}/buy): purchase a Teacher or Coordinator Portal and add-ons online
+- [Pricing](${site.url}/pricing): ${pricing}
 - [Contact](${site.url}/contact): talk to the team about running your contest
 - [Become a judge](${site.url}/judges): join the judge network — how judging works, and the volunteer or freelance interest forms
 

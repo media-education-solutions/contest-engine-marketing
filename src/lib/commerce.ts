@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { portals, addOns, type Sku } from "@/content/commerce";
+import { engines, addOns, type Sku } from "@/content/commerce";
 
 export type Selection = { plan: string; addOns: string[] };
 
@@ -9,13 +9,13 @@ export type Selection = { plan: string; addOns: string[] };
  * submission, NOT as an empty cart.
  */
 export function resolveSelection(sel: Selection): Sku[] | null {
-  const portal = portals.find((p) => p.id === sel.plan);
-  if (!portal) return null;
+  const engine = engines.find((e) => e.id === sel.plan);
+  if (!engine) return null;
 
-  const picked: Sku[] = [portal];
+  const picked: Sku[] = [engine];
   for (const id of sel.addOns) {
     const addOn = addOns.find((a) => a.id === id);
-    if (!addOn || !(addOn.appliesTo as readonly string[]).includes(portal.id)) return null;
+    if (!addOn || !(addOn.appliesTo as readonly string[]).includes(engine.id)) return null;
     picked.push(addOn);
   }
   return picked;

@@ -10,7 +10,9 @@ import { VIEWPORTS } from "../lib/config.mjs";
 import { APP_URL } from "../lib/config.mjs";
 
 const CONTEST_CODE = "HCSS27";
-const NAME = "Maya R.";
+// A school, not a person: the field takes "your name or organization", and a teacher
+// registers a whole program under one code. Fictional name, no real school.
+const NAME = "Springfield High";
 
 export const clip = {
   id: 3,

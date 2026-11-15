@@ -5,17 +5,18 @@ import { PricingTiers } from "@/components/blocks/pricing-tiers";
 import { Faq } from "@/components/blocks/faq";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { site } from "@/content/site";
-import { portals, addOns, formatUsd } from "@/content/commerce";
+import { engines, addOns, formatUsd } from "@/content/commerce";
 import * as content from "@/content/pages/pricing";
 
 export const metadata = pageMetadata({
   title: "Pricing",
-  description: `${site.productName} offers Teacher and Coordinator Portals with simple annual pricing starting at ${formatUsd(portals[0].amountCents)} per year, plus individually priced add-ons and custom-configured Suites for scholastic and corporate media programs. Talk to us to scope your deployment.`,
+  description: `${site.productName} pricing starts at ${formatUsd(engines[0].amountCents)} ${engines[0].priceNote}. Choose a Single, Classroom, Professional, Convention, or Scholastic Engine for school districts, nonprofits, and scholastic media organizations. Talk to us to find the right fit.`,
   path: "/pricing",
 });
 
-// Derived from the catalog so this can never drift from what /buy actually charges.
-const allPrices = [...portals, ...addOns].map((s) => s.amountCents);
+// Derived from the catalog so this can never drift from what /buy would charge.
+// Quote-only Engines are left out: "starting at" figures are not fixed offers.
+const allPrices = [...engines, ...addOns].map((s) => s.amountCents);
 
 const productSchema = {
   "@context": "https://schema.org",

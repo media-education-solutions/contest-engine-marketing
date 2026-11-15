@@ -10,11 +10,15 @@ import { cn } from "@/lib/utils";
 export type PricingTier = {
   name: string;
   audience: string;
+  /** Small line above the price, e.g. "Starting at". */
+  pricePrefix?: string;
   price?: string;
   /** e.g. "per year" or "one contest" */
   priceNote?: string;
   features: string[];
   featured?: boolean;
+  /** Badge text on the card. Copy, so it comes from content, not the block. */
+  badge?: string;
   /** Overrides the shared CTA for this card (e.g. a purchase link). */
   cta?: { label: string; href: string };
 };
@@ -56,21 +60,28 @@ function TierCard({
           : "border-border",
       )}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
         <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.14em]">
           {tier.name}
         </h3>
-        {tier.featured && <Badge>Most popular</Badge>}
+        {tier.badge && <Badge>{tier.badge}</Badge>}
       </div>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         {tier.audience}
       </p>
       {tier.price && (
         <div className="mt-5">
-          <span className="font-heading text-4xl font-bold">{tier.price}</span>
-          {tier.priceNote && (
-            <span className="ml-2 text-sm text-muted-foreground">{tier.priceNote}</span>
+          {tier.pricePrefix && (
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              {tier.pricePrefix}
+            </p>
           )}
+          <div className="flex flex-wrap items-baseline gap-x-2">
+            <span className="font-heading text-4xl font-bold">{tier.price}</span>
+            {tier.priceNote && (
+              <span className="text-sm text-muted-foreground">{tier.priceNote}</span>
+            )}
+          </div>
         </div>
       )}
       <ul className="mt-6 flex-1 space-y-3">
