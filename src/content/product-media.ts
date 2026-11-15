@@ -34,7 +34,7 @@ export const rankingClip: VideoEmbedProps = {
 export const registrationClip: VideoEmbedProps = {
   src: "/assets/video/participant/participant_registration.mp4",
   poster: "/assets/video/participant/participant_registration_poster.jpg",
-  title: "A student registers with just a name and gets a participant code",
+  title: "A school registers under a single name and gets a participant code",
   aspect: "4/3",
   autoPlay: true,
 };
