@@ -4,14 +4,14 @@ import { PageIntro } from "@/components/blocks/page-intro";
 import { Container } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { commerceEnabled } from "@/lib/stripe";
-import { portals } from "@/content/commerce";
+import { engines } from "@/content/commerce";
 import { site } from "@/content/site";
 import * as content from "@/content/pages/buy";
 import { BuyForm } from "./buy-form";
 
 export const metadata = pageMetadata({
   title: "Buy",
-  description: `Purchase a ${site.productName} Teacher or Coordinator Portal and add-ons securely online.`,
+  description: `Purchase a ${site.productName} ${engines.map((e) => e.name).join(" or ")} and add-ons securely online.`,
   path: "/buy",
 });
 
@@ -21,7 +21,7 @@ export default async function BuyPage({
   searchParams: Promise<{ plan?: string }>;
 }) {
   const { plan } = await searchParams;
-  const defaultPlan = portals.some((p) => p.id === plan) ? plan! : portals[0].id;
+  const defaultPlan = engines.some((e) => e.id === plan) ? plan! : engines[0].id;
 
   return (
     <>

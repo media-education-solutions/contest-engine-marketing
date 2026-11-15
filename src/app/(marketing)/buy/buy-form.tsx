@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { portals, addOns as addOnCatalog, formatUsd } from "@/content/commerce";
+import { engines, addOns as addOnCatalog, formatUsd } from "@/content/commerce";
 import { form as copy } from "@/content/pages/buy";
 import { cn, formatPhoneNumber } from "@/lib/utils";
 import { submitBuy, type BuyFormState } from "./actions";
@@ -47,8 +47,8 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
     [plan],
   );
 
-  // Switching portals can make a previously checked add-on no longer apply
-  // (e.g. QR access is Teacher-only). Derived during render rather than
+  // Switching Engines can make a previously checked add-on no longer apply
+  // (add-ons carry an `appliesTo` list). Derived during render rather than
   // synced via an effect: an id absent from availableAddOns simply never
   // renders as checked, contributes to the total, or gets submitted (its
   // checkbox — and the hidden input backing it — isn't in the DOM).
@@ -62,12 +62,12 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
     }
   }, [state]);
 
-  const portalTotal = portals.find((p) => p.id === plan)?.amountCents ?? 0;
+  const engineTotal = engines.find((e) => e.id === plan)?.amountCents ?? 0;
   const addOnTotal = activeAddOnIds.reduce((sum, id) => {
     const addOn = addOnCatalog.find((a) => a.id === id);
     return sum + (addOn?.amountCents ?? 0);
   }, 0);
-  const total = portalTotal + addOnTotal;
+  const total = engineTotal + addOnTotal;
 
   if (state.status === "redirect") {
     return (
@@ -89,16 +89,16 @@ export function BuyForm({ defaultPlan }: { defaultPlan: string }) {
     >
       <div className="space-y-2">
         <Label htmlFor="plan">
-          {copy.portalLabel} <RequiredMark />
+          {copy.engineLabel} <RequiredMark />
         </Label>
         <Select name="plan" value={plan} onValueChange={setPlan}>
           <SelectTrigger id="plan" className="w-full">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {portals.map((p) => (
-              <SelectItem key={p.id} value={p.id}>
-                {p.name} — {formatUsd(p.amountCents)} {p.priceNote}
+            {engines.map((e) => (
+              <SelectItem key={e.id} value={e.id}>
+                {e.name} — {formatUsd(e.amountCents)} {e.priceNote}
               </SelectItem>
             ))}
           </SelectContent>

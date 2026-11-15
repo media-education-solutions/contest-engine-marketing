@@ -1,14 +1,13 @@
 import type { PageIntroProps } from "@/components/blocks/page-intro";
-import { site } from "@/content/site";
 
 export const intro: PageIntroProps = {
   kicker: "Buy",
-  title: "Purchase your Portal",
-  subtitle: `Pick your ${site.productName} Portal, add any extras, and check out securely. We'll follow up by email to get your account activated.`,
+  title: "Purchase your Engine",
+  subtitle: `Pick your Engine, add any extras, and check out securely. We'll follow up by email to get your account activated.`,
 };
 
 export const form = {
-  portalLabel: "Portal",
+  engineLabel: "Engine",
   addOnsLabel: "Add-ons",
   summaryLabel: "Order total",
   fields: {
@@ -37,7 +36,7 @@ export const form = {
 
 export const disabled = {
   title: "Purchasing is temporarily unavailable",
-  body: "We're not able to process payments online right now. Contact us and we'll get your Portal set up.",
+  body: "We're not able to process payments online right now. Contact us and we'll get your Engine set up.",
   cta: { label: "Contact us", href: "/contact" },
 };
 
@@ -45,6 +44,6 @@ export const success = {
   kicker: "Thank you",
   title: "Payment received",
   subtitle:
-    "We'll follow up by email within one business day to activate your Portal and get your contest started.",
+    "We'll follow up by email within one business day to activate your Engine and get your contest started.",
   cta: { label: "Back to pricing", href: "/pricing" },
 };

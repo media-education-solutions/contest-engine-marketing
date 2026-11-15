@@ -185,7 +185,7 @@ export const doc: LegalDocProps = {
       body: [
         {
           kind: "p",
-          text: `Portal subscriptions purchased through ${site.productName} run for one year from activation. Add-ons purchased alongside a Portal are one-time purchases tied to that Portal's term.`,
+          text: `A Single Engine purchased through ${site.productName} covers one contest. A Classroom Engine covers up to four contests during one school year from activation. Add-ons purchased alongside an Engine are one-time purchases tied to that Engine's term. Professional, Convention, and Scholastic Engines are governed by the written agreement for that deployment.`,
         },
         {
           kind: "p",
