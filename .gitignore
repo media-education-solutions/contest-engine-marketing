@@ -38,6 +38,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# demo capture media (MED-42): re-download with `npm run demo:fetch`
+/scripts/demo/.media/
+
+# capture sessions are live logins; raw frames are large scratch (MED-42)
+/scripts/capture/.auth/
+/scripts/capture/.out/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
