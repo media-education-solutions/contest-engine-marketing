@@ -24,18 +24,18 @@ export const clip = {
 
   async run(page, h) {
     await h.park(512, 420);
-    await h.pause(2000); // their entry, rubric level and the judge's feedback
+    await h.pause(3200); // their entry, rubric level and the judge's feedback
 
     const winners = page.getByRole("heading", { name: "Winners" });
-    await h.scrollTo(winners, { align: 0.08, ms: 1300 });
-    await h.pause(700);
+    await h.scrollTo(winners, { align: 0.08, ms: 1800 });
+    await h.pause(1200);
 
     // The category where this student placed first.
     const placed = page.getByRole("button").filter({ hasText: "You placed 1st" }).first();
-    await h.click(placed, { settle: 900 });
+    await h.click(placed, { settle: 1200 });
 
     // Payoff: the podium, their entry marked "Your Entry".
-    await h.scrollTo(page.getByText("Your Entry").first(), { align: 0.5, ms: 1000 });
-    await h.pause(2500);
+    await h.scrollTo(page.getByText("Your Entry").first(), { align: 0.5, ms: 1400 });
+    await h.pause(3500);
   },
 };
