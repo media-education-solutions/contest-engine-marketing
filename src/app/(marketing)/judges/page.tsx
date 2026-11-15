@@ -13,6 +13,7 @@ import { Kicker } from "@/components/ui/play-mark";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/layout/section";
 import * as content from "@/content/pages/judges";
+import { judgeDashboardStill, judgeRatingStill } from "@/content/product-media";
 import { JudgeForm } from "./judge-form";
 
 export const metadata = pageMetadata({
@@ -27,13 +28,7 @@ export default function JudgesPage() {
       <Hero
         {...content.hero}
         media={
-          <ScreenshotShowcase
-            src="/assets/photo/judge/judge_rating.png"
-            alt="A judge scoring an entry on the Universal Performance Rubric"
-            aspect="video"
-            fit="contain"
-            priority
-          />
+          <ScreenshotShowcase {...judgeRatingStill} />
         }
       />
       <JsonLd data={faqSchema(content.faq.items)} />
@@ -41,12 +36,7 @@ export default function JudgesPage() {
       <FeatureSplit
         {...content.anywhere}
         media={
-          <ScreenshotShowcase
-            src="/assets/photo/judge/judge_dashboard.png"
-            alt="A judge's dashboard showing assigned categories and entries"
-            aspect="4/3"
-            fit="contain"
-          />
+          <ScreenshotShowcase {...judgeDashboardStill} />
         }
       />
       <TagList {...content.whatYoullJudge} />
