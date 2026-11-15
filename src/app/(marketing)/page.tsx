@@ -8,6 +8,7 @@ import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBanner } from "@/components/blocks/cta-banner";
 import { VideoEmbed } from "@/components/blocks/video-embed";
 import * as content from "@/content/pages/home";
+import { judgingClip } from "@/content/product-media";
 
 export const metadata = pageMetadata({
   description: site.description,
@@ -20,13 +21,7 @@ export default function HomePage() {
       <Hero
         {...content.hero}
         media={
-          <VideoEmbed
-            src="/assets/video/judge/judge_judging_process.mp4"
-            poster="/assets/video/judge/judge_judging_process_poster.jpg"
-            title="Judging anonymized entries on a guided rating scale"
-            aspect="4/3"
-            autoPlay
-          />
+          <VideoEmbed {...judgingClip} />
         }
       />
       <LogoCloud {...content.logoCloud} />

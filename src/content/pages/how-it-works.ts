@@ -8,7 +8,7 @@ export const intro = {
   subtitle: `Create your contest, collect entries, manage judging, and recognize great work. ${site.productName} keeps everything moving from start to finish.`,
 };
 
-/** Media slots are wired up in the page component (MediaPlaceholder until Phase 5). */
+/** Media slots are wired up in the page component from `@/content/product-media`. */
 export const roles: Array<Omit<FeatureSplitProps, "media">> = [
   {
     id: "organizers",
